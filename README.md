@@ -37,7 +37,9 @@ npm run dev
 ```
 
 open the app:
+
 control click or command click on the link that pops up in the terminal
+
 it looks something like:
 ```
 http://localhost:xxxx/
