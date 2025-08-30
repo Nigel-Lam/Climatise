@@ -5,7 +5,8 @@ Do pip install -r requirements.txt when pulling from repository to ensure code h
 
 TO RUN THE WEBSITE:
 
-    INITIAL PACKAGE INSTALLATION:
+INITIAL PACKAGE INSTALLATION:
+
 check node and npm are installed:
 
 in vscode terminal in root directory:
@@ -24,16 +25,16 @@ navigate to the app directory:
 cd climatise-app
 ```
 
-install packages
+install packages:
 ```
 npm install
 ```
 
     run the app
 
-``
+```
 npm run dev
-``
+```
 
 open the app:
 control click or command click on the link that pops up in the terminal
