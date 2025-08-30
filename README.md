@@ -29,3 +29,7 @@ npm run dev
 //open app//
 control click or command click on the link that pops up in the terminal
 it looks something like http://localhost:xxxx/
+
+FOR FRONTEND DEV:
+/climatise-app/src/App.tsx      <--     do your dev here
+/climatise-app/src/Index.css    <--     do your css stuff here, most is handled by daisyUI 
