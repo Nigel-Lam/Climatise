@@ -10,25 +10,26 @@ check node and npm are installed:
 
 in vscode terminal in root directory:
 
-node -v
-npm -v
+```node -v
+npm -v```
 
 if not installed, please install them!
 
 in vscode terminal in root directory:
 
-// navigate to the app directory //
-cd climatise-app
+navigate to the app directory:
+```cd climatise-app```
 
-// install packages //
-npm install
+install packages
+```npm install```
 
-//run the app//
-npm run dev
+    run the app
 
-//open app//
+``npm run dev``
+
+open the app:
 control click or command click on the link that pops up in the terminal
-it looks something like http://localhost:xxxx/
+it looks something like ```http://localhost:xxxx/```
 
 FOR FRONTEND DEV:
 /climatise-app/src/App.tsx      <--     do your dev here
