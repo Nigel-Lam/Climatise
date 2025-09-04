@@ -30,7 +30,7 @@ install packages:
 npm install
 ```
 
-    run the app
+    run the app:
 
 ```
 npm run dev
