@@ -1,19 +1,32 @@
 import { useState } from 'react'
+import { NavBar } from './components/NavBar'
 
 function App() {
   return (
-  <div className="min-h-screen flex justify-center items-center">
-    <div className="card w-96 bg-black shadow-xl">
-      <div className="card-body">
-        <h2 className="card-title">Climatise Test Card</h2>
-        <p>This page is for Climatise</p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">This button does nothing</button>
-        </div>
-      </div>
-    </div>
-  </div>
+    <div className="flex flex-col w-screen h-screen">
 
+      {/* NavBar */}
+      <div className="NavBar">
+        <NavBar/>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-1 p-4">
+        {/* grid setup */}
+        <div className="grid grid-cols-3 grid-rows-3 gap-1 h-full">
+          <p>1</p>
+          <p>2</p>
+          <p>3</p>
+          <p>4</p>
+          <p>5</p>
+          <p>6</p>
+          <p>7</p>
+          <p>8</p>
+          <p>9</p>
+        </div>
+
+      </div>
+    </div>    
   )
 }
 
