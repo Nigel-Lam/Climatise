@@ -1,0 +1,11 @@
+[project]
+name = "climatise"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pandas>=2.3.2",
+    "pydantic>=2.11.9",
+    "pymongo>=4.15.1",
+]

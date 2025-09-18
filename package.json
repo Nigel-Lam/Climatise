@@ -1,0 +1,15 @@
+{
+  "name": "climatise",
+  "version": "1.0.0",
+  "description": "Weather report website tha displays weather data in Melbourne from the ABS (Australia Bureau of Meteorology)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently -k -n BACKEND,FRONTEND -c blue,green \\\"npm --prefix backend run dev\\\" \\\"npm --prefix frontend run dev\\\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
