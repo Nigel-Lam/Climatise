@@ -2,3 +2,5 @@ package-lock.json
 .vscode/settings.json
 frontend/package-lock.json
 frontend/package-lock.json
+
+venv/
