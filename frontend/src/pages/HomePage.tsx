@@ -1,4 +1,6 @@
-import { NavBar } from "./components/NavBar";
+import { NavBar } from "../components/NavBar";
+import { WeatherStationFilter } from "../components/WeatherStationFilter";
+import { DateRangePicker } from "../components/DateRangePicker";
 
 const HomePage = () => {
   return (
@@ -21,16 +23,19 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div className="filterColumn flex flex-col w-2/6 h-full">
-          <div className="dateFilter flex w-full h-2/6 p-2">
-            <span className="border-2 h-full w-full">Date Filter/Calender</span>
+        <div className="filterColumn flex flex-col w-3/6 h-full">
+          <div className="dateFilter flex w-full h-3/6 p-2 bg-white shrink mt-2">
+            <DateRangePicker />
+            {/* <span className="border-2 h-full w-full">Date Filter/Calender</span> */}
           </div>
 
           <div className="stationFilter flex w-full h-2/6 p-2">
-            <span className="border-2 h-full w-full">Weather Station Filter</span>
+            <span className="border-2 h-full w-full">
+              Weather Station Filter <WeatherStationFilter />
+            </span>
           </div>
 
-          <div className="fillerSpace flex w-full h-2/6 p-2">
+          <div className="fillerSpace flex w-full h-1/6 p-2">
             <span className="border-2 h-full w-full">Filler Space</span>
           </div>
         </div>
