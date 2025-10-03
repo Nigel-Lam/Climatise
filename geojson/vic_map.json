@@ -1,71 +1,151 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 800,
-  "height": 450,
-  "title": "% Change in Victorian Median Salary per Job by Region (2020 to 2021)",
+  "height": 500,
+  "title": "Victorian Weather Stations - Daily Observations",
 
   "projection": {
     "type": "mercator",
     "center": [145.1938, -36.2004],
     "scale": 3750,
     "translate": [425, 190]
-  },  
-  
+  },
+
+  "params": [
+    {
+      "name": "dateSelection",
+      "value": "2020-01-01",
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 1825,
+        "step": 1,
+        "name": "Day: "
+      }
+    }
+  ],
+
   "layer": [
     {
       "data": {
         "url": "https://raw.githubusercontent.com/Nigel-Lam/Climatise/refs/heads/main/geojson/SA3_2021_AUST_GDA2020.json",
         "format": {"type": "topojson", "feature": "SA3_2021_AUST_GDA2020"}
       },
-      "transform":[
+      "transform": [
         {"filter": "datum.properties.STE_NAME21 === 'Victoria' "}
       ],
-      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+      "mark": {"type": "geoshape", "fill": "#e8e8e8", "stroke": "white", "strokeWidth": 0.5}
     },
 
-    { 
+    {
       "data": {
-        "url": "https://raw.githubusercontent.com/Nigel-Lam/Climatise/refs/heads/main/geojson/SA3_2021_AUST_GDA2020.json",
-        "format": {"type": "topojson", "feature": "SA3_2021_AUST_GDA2020"}
+        "url": "https://raw.githubusercontent.com/Nigel-Lam/Climatise/refs/heads/main/data/victoria.json",
+        "format": {"type": "json"}
       },
       "transform": [
+        {"flatten": ["aireys_inlet", "avalon_airport", "bairnsdale_airport", "ballarat_aerodrome", "bendigo_airport", "cape_otway_lighthouse", "casterton", "cerberus", "charlton", "colac_(mount_gellibrand)", "coldstream", "edenhope_airport", "essendon_airport", "frankston_(ballam_park)", "hamilton_airport", "horsham_aerodrome", "laverton_raaf", "longerenong", "mallacoota", "melbourne_(olympic_park)", "melbourne_airport", "mildura_airport", "moorabbin_airport", "morwell_(latrobe_valley_airport)", "nhill_aerodrome", "omeo", "orbost", "point_cook_raaf", "portland_airport", "rutherglen_research", "shepparton_airport", "stawell_aerodrome", "swan_hill_aerodrome", "wangaratta_aero", "warrnambool_airport_ndb", "wilsons_promontory_lighthouse", "yarrawonga"], "as": "obs"},
+        {"calculate": "datum.obs['Station Name']", "as": "station"},
+        {"calculate": "datum.obs['Date']", "as": "date"},
+        {"calculate": "substring(datum.date, 0, 10)", "as": "date_str"},
+        {"calculate": "datum.obs['Maximum Temperature (°C)']", "as": "max_temp"},
+        {"calculate": "datum.obs['Minimum Temperature (°C)']", "as": "min_temp"},
+        {"calculate": "datum.obs['Rain 0900-0900 (mm)']", "as": "rain"},
+        {"calculate": "datum.obs['Maximum Relative Humidity (%)']", "as": "max_humidity"},
+        {"calculate": "datum.obs['Minimum Relative Humidity (%)']", "as": "min_humidity"},
+        {"calculate": "datum.obs['Average 10m Wind Speed (m/sec)']", "as": "wind_speed"},
+        {"calculate": "datum.obs['Solar Radiation (MJ/sq m)']", "as": "solar_rad"},
+        {"calculate": "datum.obs['Evapo- Transpiration 0000-2400 (mm)']", "as": "evapotrans"},
         {
-          "lookup": "properties.SA3_NAME21",
+          "calculate": "timeParse(datum.date, '%Y-%m-%d %H:%M:%S')",
+          "as": "date_parsed"
+        },
+        {
+          "calculate": "(datum.date_parsed - datetime(2020,0,1)) / 86400000",
+          "as": "day_index"
+        },
+        {"filter": "datum.day_index == dateSelection"},
+        {
+          "lookup": "station",
           "from": {
             "data": {
-              "url": "https://friedchickenbigdrip.github.io/FIT3179-Week-9-Homework/data/VictMedianSalaryPerJob.csv"
+              "values": [
+                {"station": "AIREYS INLET", "lat": -38.46, "lon": 144.09},
+                {"station": "AVALON AIRPORT", "lat": -38.04, "lon": 144.47},
+                {"station": "BAIRNSDALE AIRPORT", "lat": -37.89, "lon": 147.57},
+                {"station": "BALLARAT AERODROME", "lat": -37.52, "lon": 143.79},
+                {"station": "BENDIGO AIRPORT", "lat": -36.74, "lon": 144.33},
+                {"station": "CAPE OTWAY LIGHTHOUSE", "lat": -38.86, "lon": 143.51},
+                {"station": "CASTERTON", "lat": -37.59, "lon": 141.40},
+                {"station": "CERBERUS", "lat": -38.36, "lon": 145.18},
+                {"station": "CHARLTON", "lat": -36.27, "lon": 143.35},
+                {"station": "COLAC (MOUNT GELLIBRAND)", "lat": -38.33, "lon": 143.58},
+                {"station": "COLDSTREAM", "lat": -37.73, "lon": 145.40},
+                {"station": "EDENHOPE AIRPORT", "lat": -37.03, "lon": 141.30},
+                {"station": "ESSENDON AIRPORT", "lat": -37.73, "lon": 144.90},
+                {"station": "FRANKSTON (BALLAM PARK)", "lat": -38.16, "lon": 145.15},
+                {"station": "HAMILTON AIRPORT", "lat": -37.65, "lon": 142.06},
+                {"station": "HORSHAM AERODROME", "lat": -36.67, "lon": 142.17},
+                {"station": "LAVERTON RAAF", "lat": -37.86, "lon": 144.75},
+                {"station": "LONGERENONG", "lat": -36.67, "lon": 142.30},
+                {"station": "MALLACOOTA", "lat": -37.60, "lon": 149.75},
+                {"station": "MELBOURNE (OLYMPIC PARK)", "lat": -37.83, "lon": 144.98},
+                {"station": "MELBOURNE AIRPORT", "lat": -37.67, "lon": 144.83},
+                {"station": "MILDURA AIRPORT", "lat": -34.24, "lon": 142.09},
+                {"station": "MOORABBIN AIRPORT", "lat": -37.98, "lon": 145.10},
+                {"station": "MORWELL (LATROBE VALLEY AIRPORT)", "lat": -38.21, "lon": 146.47},
+                {"station": "NHILL AERODROME", "lat": -36.32, "lon": 141.65},
+                {"station": "OMEO", "lat": -37.10, "lon": 147.60},
+                {"station": "ORBOST", "lat": -37.70, "lon": 148.46},
+                {"station": "POINT COOK RAAF", "lat": -37.93, "lon": 144.75},
+                {"station": "PORTLAND AIRPORT", "lat": -38.32, "lon": 141.47},
+                {"station": "RUTHERGLEN RESEARCH", "lat": -36.10, "lon": 146.51},
+                {"station": "SHEPPARTON AIRPORT", "lat": -36.43, "lon": 145.39},
+                {"station": "STAWELL AERODROME", "lat": -37.07, "lon": 142.74},
+                {"station": "SWAN HILL AERODROME", "lat": -35.38, "lon": 143.53},
+                {"station": "WANGARATTA AERO", "lat": -36.42, "lon": 146.31},
+                {"station": "WARRNAMBOOL AIRPORT NDB", "lat": -38.30, "lon": 142.45},
+                {"station": "WILSONS PROMONTORY LIGHTHOUSE", "lat": -39.13, "lon": 146.42},
+                {"station": "YARRAWONGA", "lat": -36.03, "lon": 146.00}
+              ]
             },
-            "key": "SA3 NAME",
-            "fields": ["2021-22"]
+            "key": "station",
+            "fields": ["lat", "lon"]
           }
         }
       ],
-      "mark": {"type": "geoshape", "stroke": "white"},
+      "mark": {
+        "type": "circle",
+        "size": 100,
+        "opacity": 0.8,
+        "stroke": "white",
+        "strokeWidth": 1
+      },
       "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
         "color": {
-          "field": "2021-22",
+          "field": "max_temp",
           "type": "quantitative",
           "scale": {
-            "type": "threshold",
-            "domain": [-0.15, -0.10, -0.05, 0],
-            "range": ["#d73027", "#fc8d59", "#fdae61", "#fee08b", "#d9ef8b"]
+            "scheme": "redyellowblue",
+            "reverse": true,
+            "domain": [0, 45]
           },
-          "title": "% Change in Median Salary",
-          "format": ".2%"
+          "title": "Max Temp (°C)"
         },
         "tooltip": [
-          {"field": "properties.SA3_NAME21", "type": "nominal", "title": "Region"},
-          {"field": "2021-22", "type": "quantitative", "title": "% Change in Median Salary", "format": ".2%"}
+          {"field": "station", "type": "nominal", "title": "Station"},
+          {"field": "date_str", "type": "nominal", "title": "Date"},
+          {"field": "max_temp", "type": "quantitative", "title": "Max Temperature (°C)", "format": ".1f"},
+          {"field": "min_temp", "type": "quantitative", "title": "Min Temperature (°C)", "format": ".1f"},
+          {"field": "rain", "type": "quantitative", "title": "Rainfall (mm)", "format": ".1f"},
+          {"field": "max_humidity", "type": "quantitative", "title": "Max Humidity (%)", "format": ".0f"},
+          {"field": "min_humidity", "type": "quantitative", "title": "Min Humidity (%)", "format": ".0f"},
+          {"field": "wind_speed", "type": "quantitative", "title": "Wind Speed (m/s)", "format": ".2f"},
+          {"field": "solar_rad", "type": "quantitative", "title": "Solar Radiation (MJ/m²)", "format": ".1f"},
+          {"field": "evapotrans", "type": "quantitative", "title": "Evapotranspiration (mm)", "format": ".1f"}
         ]
       }
-    },
-    {
-      "data": {
-        "url": "https://friedchickenbigdrip.github.io/FIT3179-Week-9-Homework/js/output.json",
-        "format": {"type": "topojson", "feature": "ne_110m_graticules_1"}
-      },
-      "mark": {"type": "geoshape", "fill": null, "stroke": "gray"}
-    } 
-
+    }
   ]
 }
