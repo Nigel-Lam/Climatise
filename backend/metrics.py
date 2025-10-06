@@ -73,11 +73,11 @@ def metrics(station_name):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python metrics.py <station_name>")
+    import sys
+    station_name = sys.argv[1] if len(sys.argv) > 1 else None
+    if not station_name:
+        print(json.dumps({"error": "No station provided"}))
         sys.exit(1)
-
-    station_name = sys.argv[1]
-    metrics = metrics(station_name)
-    if metrics:
-        print(json.dumps(metrics, indent= 2))
+    
+    result = metrics(station_name)
+    print(json.dumps(result))

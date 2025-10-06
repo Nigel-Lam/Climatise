@@ -3,6 +3,7 @@ import cors from "cors";
 import Database from "better-sqlite3";
 import path from "path";
 import {fileURLToPath} from "url";
+import { spawn } from "child_process";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -32,6 +33,35 @@ app.get("/api/weather/:station_name", (req, res) => {
         res.status(500).json({error: "Database query failed"});
     }
 });
+
+
+
+
+
+app.get("/api/metrics/:station_name", (req, res) => {
+  const station = req.params.station_name.replace(/_/g, " ");
+
+  const python = spawn("python", ["./metrics.py", station]);
+
+  let data = "";
+  python.stdout.on("data", (chunk) => {
+    data += chunk.toString();
+  });
+
+  python.stderr.on("data", (err) => {
+    console.error("Python error:", err.toString());
+  });
+
+  python.on("close", (code) => {
+    try {
+      const parsed = JSON.parse(data);
+      res.json(parsed);
+    } catch (e) {
+      res.status(500).json({ error: "Failed to parse Python output" });
+    }
+  });
+});
+
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
