@@ -61,13 +61,6 @@ def get_weather_by_station_name(
             }
         ).fetchall()
 
-        print({
-                'station_name': station_name,  # Personally, I prefer using named rather than positional parameters.
-                'earliest': earliest.strftime("%Y-%m-%d %H:%M:%S"),
-                'latest': latest.strftime("%Y-%m-%d %H:%M:%S"),
-            })
-        print(results)
-
         metrics = {
             'maximum_temperature': [],
             'minimum_temperature': [],
