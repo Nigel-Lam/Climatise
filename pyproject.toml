@@ -5,6 +5,8 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "fastapi[standard]>=0.118.0",
+    "httpx>=0.28.1",
     "pandas>=2.3.2",
     "pydantic>=2.11.9",
     "pymongo>=4.15.1",

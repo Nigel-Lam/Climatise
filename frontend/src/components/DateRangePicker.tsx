@@ -9,6 +9,8 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 export function DateRangePicker() {
   const [value, onChange] = useState<Value>(new Date());
 
+  console.log(value);
+
   return (
     <div>
       <Calendar onChange={onChange} value={value} selectRange={true} returnValue="range" />
