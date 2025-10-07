@@ -1,19 +1,18 @@
-//TODO - Implement a date range picker component
-import { useState } from "react";
-import Calendar from "react-calendar";
-
-type ValuePiece = Date | null;
-
-type Value = ValuePiece | [ValuePiece, ValuePiece];
+import Calendar, {type CalendarProps } from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import { useStationStore } from '../store.ts';
 
 export function DateRangePicker() {
-  const [value, onChange] = useState<Value>(new Date());
+  const { setEarliest, setLatest } = useStationStore();
 
-  console.log(value);
+  const handleDateRangeChange: CalendarProps['onChange'] = (value) => {
+    if (Array.isArray(value) && value.length === 2 && value[0] && value[1]) {
+      setEarliest(value[0]);
+      setLatest(value[1]);
+    }
+  };
 
   return (
-    <div>
-      <Calendar onChange={onChange} value={value} selectRange={true} returnValue="range" />
-    </div>
+    <Calendar selectRange={true} onChange={handleDateRangeChange} />
   );
 }

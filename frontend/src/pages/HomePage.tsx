@@ -1,6 +1,7 @@
 import { NavBar } from "../components/NavBar";
 import { WeatherStationFilter } from "../components/WeatherStationFilter";
 import { DateRangePicker } from "../components/DateRangePicker";
+import StationWeather from "./StationWeather.tsx";
 
 const HomePage = () => {
   return (
@@ -19,7 +20,7 @@ const HomePage = () => {
           </div>
 
           <div className="secondaryViz flex w-full h-2/6 p-2">
-            <span className="border-2 h-full w-full">Secondary Viz</span>
+            <StationWeather/>
           </div>
         </div>
 

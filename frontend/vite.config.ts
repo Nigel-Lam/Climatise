@@ -8,6 +8,6 @@ export default defineConfig({
     tailwindcss()
   ],
   server: {
-    proxy: { "/api": "http://localhost:3001" }
+    proxy: { "/api": "http://localhost:8000" }
   }
 })

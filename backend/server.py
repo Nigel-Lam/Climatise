@@ -43,11 +43,11 @@ def get_weather_by_station_name(
         results = connection.execute(
             '''
             SELECT -- We can actually handle a lot of the manipulation at query-time:
-                    CASE WHEN maximum_temperature IS NOT NULL THEN ROUND(maximum_temperature, 1) END AS maximum_temperature,
-                    CASE WHEN minimum_temperature IS NOT NULL THEN ROUND(minimum_temperature, 1) END AS minimum_temperature,
-                    CASE WHEN average_wind_speed IS NOT NULL THEN ROUND(average_wind_speed, 1) END AS average_wind_speed,
-                    CASE WHEN maximum_relative_humidity IS NOT NULL THEN ROUND(maximum_relative_humidity, 1) END AS maximum_relative_humidity,
-                    CASE WHEN minimum_relative_humidity IS NOT NULL THEN ROUND(minimum_relative_humidity, 1) END AS minimum_relative_humidity
+                    COALESCE(ROUND(maximum_temperature, 1), 0.0) AS maximum_temperature,
+                    COALESCE(ROUND(minimum_temperature, 1), 0.0) AS minimum_temperature,
+                    COALESCE(ROUND(average_wind_speed, 1), 0.0) AS average_wind_speed,
+                    COALESCE(ROUND(maximum_relative_humidity, 1), 0.0) AS maximum_relative_humidity,
+                    COALESCE(ROUND(minimum_relative_humidity, 1), 0.0) AS minimum_relative_humidity
             FROM "victoria.db"
             WHERE UPPER(station_name) = UPPER(:station_name)
                 AND (:earliest IS NULL OR date >= :earliest)
@@ -56,10 +56,17 @@ def get_weather_by_station_name(
             ''',
             {
                 'station_name': station_name,  # Personally, I prefer using named rather than positional parameters.
-                'earliest': earliest,
-                'latest': latest,
+                'earliest': earliest.strftime("%Y-%m-%d %H:%M:%S"),
+                'latest': latest.strftime("%Y-%m-%d %H:%M:%S"),
             }
         ).fetchall()
+
+        print({
+                'station_name': station_name,  # Personally, I prefer using named rather than positional parameters.
+                'earliest': earliest.strftime("%Y-%m-%d %H:%M:%S"),
+                'latest': latest.strftime("%Y-%m-%d %H:%M:%S"),
+            })
+        print(results)
 
         metrics = {
             'maximum_temperature': [],

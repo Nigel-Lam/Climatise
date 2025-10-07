@@ -1,136 +1,200 @@
-import { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { useStationStore } from "../store";
 
-type ApiRow = {
-  index: number;
-  station_name: string;
-  date: string; // "YYYY-MM-DD HH:mm:ss"
-  transpiration: number | null;
-  rain: number | null;
-  evaporation: number | null;
-  maximum_temperature: number | null;
-  minimum_temperature: number | null;
-  maximum_relative_humidity: number | null;
-  minimum_relative_humidity: number | null;
-  average_wind_speed: number | null;
-  // backend has a typo "solar_raditation"
-  solar_raditation?: number | null;
-  solar_radiation?: number | null; // in case you fix it later
-};
+type ApiSeries = Record<string, Array<number | null> | undefined>;
+type Series = Record<string, number[]>; // normalized to numbers (NaN for missing)
 
-type UiRow = {
-  key: string;
-  ts: string;
-  transpiration: number | null;
-  rain: number | null;
-  evaporation: number | null;
-  maxTemp: number | null;
-  minTemp: number | null;
-  maxRH: number | null;
-  minRH: number | null;
-  wind: number | null;
-  solar: number | null;
-};
+function normalizeSeries(api: ApiSeries): Series {
+  const out: Series = {};
 
-function toUiRow(r: ApiRow): UiRow {
-  return {
-    key: String(r.index ?? `${r.station_name}-${r.date}`),
-    ts: r.date,
-    transpiration: r.transpiration ?? null,
-    rain: r.rain ?? null,
-    evaporation: r.evaporation ?? null,
-    maxTemp: r.maximum_temperature ?? null,
-    minTemp: r.minimum_temperature ?? null,
-    maxRH: r.maximum_relative_humidity ?? null,
-    minRH: r.minimum_relative_humidity ?? null,
-    wind: r.average_wind_speed ?? null,
-    solar: (r.solar_radiation ?? r.solar_raditation) ?? null, // handle typo
-  };
+  const solar =
+    api["solar_radiation"] ?? api["solar_raditation"];
+  if (Array.isArray(solar)) {
+    out["solar_radiation"] = solar.map(v => (v ?? NaN));
+  }
+
+  for (const [key, arr] of Object.entries(api)) {
+    if (key === "solar_radiation" || key === "solar_raditation") continue;
+    if (Array.isArray(arr)) {
+      out[key] = arr.map(v => (v ?? NaN));
+    }
+  }
+  return out;
 }
 
-export default function StationWeather() {
-  const [station, setStation] = useState("");
-  const [rows, setRows] = useState<UiRow[]>([]);
+function prettyName(s: string) {
+  return s.replace(/_/g, " ").replace(/\b\w/g, m => m.toUpperCase());
+}
+function formatValue(name: string, v: number) {
+  if (!Number.isFinite(v)) return "–";
+  if (/humidity/i.test(name)) return `${v.toFixed(1)}%`;
+  if (/temperature/i.test(name)) return `${v.toFixed(1)}°`;
+  if (/wind/i.test(name)) return `${v.toFixed(1)} m/s`;
+  if (/solar/i.test(name)) return `${v.toFixed(1)} W/m²`;
+  return v.toFixed(1);
+}
+
+function Sparkline({
+  data,
+  height = 40,
+  strokeWidth = 2,
+}: {
+  data: number[];
+  height?: number;
+  strokeWidth?: number;
+}) {
+  const clean = React.useMemo(() => data.filter(Number.isFinite) as number[], [data]);
+
+  // ViewBox units (width is normalized so we can use width:100%)
+  const W = 100;
+  const H = height;
+
+  if (clean.length === 0) {
+    return (
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        style={{ width: "100%", height: H, display: "block" }}
+      />
+    );
+  }
+
+  const min = Math.min(...clean);
+  const max = Math.max(...clean);
+  const range = max - min || 1;
+  const stepX = clean.length > 1 ? W / (clean.length - 1) : 0;
+
+  const points = clean
+    .map((v, i) => {
+      const x = clean.length > 1 ? i * stepX : W; // single point -> right edge
+      const y = H - ((v - min) / range) * H;
+      return `${x},${y}`;
+    })
+    .join(" ");
+
+  const lastX = clean.length > 1 ? (clean.length - 1) * stepX : W;
+  const lastY = H - ((clean.at(-1)! - min) / range) * H;
+
+  return (
+    <svg
+      viewBox={`0 0 ${W} ${H}`}
+      style={{ width: "100%", height: H, display: "block" }}
+      preserveAspectRatio="none"
+    >
+      <polyline
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={strokeWidth}
+        points={points}
+        vectorEffect="non-scaling-stroke"
+      />
+      <circle cx={lastX} cy={lastY} r={3} fill="currentColor" />
+    </svg>
+  );
+}
+
+function MetricCard({ name, values, color }: { name: string; values: number[]; color: string }) {
+  const clean = values.filter(Number.isFinite) as number[];
+  const last = clean.at(-1);
+  const first = clean[0];
+  const min = clean.length ? Math.min(...clean) : NaN;
+  const max = clean.length ? Math.max(...clean) : NaN;
+  const delta = (last ?? NaN) - (first ?? NaN);
+
+  return (
+    <div style={{
+      border: "1px solid #e6e6e6", borderRadius: 12, padding: 16,
+      boxShadow: "0 1px 2px rgba(0,0,0,0.04)", background: "#fff",
+      display: "flex", flexDirection: "column", gap: 8,
+    }}>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div style={{ fontSize: 14, color: "#666" }}>{prettyName(name)}</div>
+        <div style={{
+          fontSize: 12,
+          color: delta > 0 ? "#16a34a" : delta < 0 ? "#dc2626" : "#666",
+          fontVariantNumeric: "tabular-nums",
+        }}>
+          {Number.isFinite(delta) && (delta > 0 ? "▲ " : delta < 0 ? "▼ " : "• ")}
+          {Number.isFinite(delta) ? formatValue(name, Math.abs(delta)) : "–"}
+        </div>
+      </div>
+
+      <div style={{ color }}>
+        <Sparkline data={values} />
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "#555", fontVariantNumeric: "tabular-nums" }}>
+        <span>Now: <strong style={{ color: "#111" }}>{last != null ? formatValue(name, last) : "–"}</strong></span>
+        <span>Min: {formatValue(name, min)}</span>
+        <span>Max: {formatValue(name, max)}</span>
+      </div>
+    </div>
+  );
+}
+
+// --- Main: uses zustand deps + fetches wide JSON ---
+export default function StationWeatherCards() {
+  const { stationName, earliest, latest } = useStationStore();
+  const [series, setSeries] = useState<Series>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  async function fetchData() {
-    if (!station.trim()) return;
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch(`/api/weather/${encodeURIComponent(station.trim())}`);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data: ApiRow[] = await res.json();
-      setRows(data.map(toUiRow));
-    } catch (e: any) {
-      setError(e?.message ?? "Failed to fetch");
-      setRows([]);
-    } finally {
-      setLoading(false);
+  useEffect(() => {
+    if (!stationName?.trim() || !earliest || !latest) {
+      setSeries({});
+      setError(null);
+      return;
     }
-  }
+
+    let cancelled = false;
+    (async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const params = new URLSearchParams();
+        params.set("station_name", stationName.trim());
+        params.set("earliest", earliest.toISOString());
+        params.set("latest", latest.toISOString());
+
+        const res = await fetch(`http://127.0.0.1:8000/api/weather?${params.toString()}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+        const apiJson: ApiSeries = await res.json(); // <-- wide object
+        const normalized = normalizeSeries(apiJson);
+        if (!cancelled) setSeries(normalized);
+      } catch (e) {
+        if (!cancelled) {
+          setError(e instanceof Error ? e.message : String(e));
+          setSeries({});
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+
+    return () => { cancelled = true; };
+  }, [stationName, earliest, latest]); // zustand deps
+
+  const palette = ["#4b7bec", "#20bf6b", "#fa8231", "#a55eea", "#fd9644", "#10b981", "#ef4444"];
+  const entries = useMemo(() => Object.entries(series), [series]);
+
+  if (!stationName?.trim()) return <div style={{ padding: 24 }}>Choose a station to see data.</div>;
+  if (!earliest || !latest) return <div style={{ padding: 24 }}>Pick a date range to see data.</div>;
+  if (loading) return <div style={{ padding: 24 }}>Loading…</div>;
+  if (error) return <div style={{ padding: 24, color: "crimson" }}>{error}</div>;
+  if (entries.length === 0) return <div style={{ padding: 24 }}>No data.</div>;
 
   return (
-    <div style={{ padding: 16 }}>
-      <h1>Weather Lookup</h1>
-
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          fetchData();
-        }}
-        style={{ marginBottom: 12 }}
-      >
-        <input
-          value={station}
-          onChange={(e) => setStation(e.target.value)}
-          placeholder="Enter station name (e.g., AVALON AIRPORT)"
-          style={{ marginRight: 8, width: 320 }}
-        />
-        <button type="submit" disabled={loading}>Fetch</button>
-      </form>
-
-      {loading && <p>Loading…</p>}
-      {error && <p style={{ color: "crimson" }}>{error}</p>}
-
-      {rows.length > 0 && (
-        <table border={1} cellPadding={6} style={{ borderCollapse: "collapse" }}>
-          <thead>
-            <tr>
-              <th>Timestamp</th>
-              <th>Transpiration (mm)</th>
-              <th>Rain (mm)</th>
-              <th>Evaporation (mm)</th>
-              <th>Max Temp (°C)</th>
-              <th>Min Temp (°C)</th>
-              <th>Max RH (%)</th>
-              <th>Min RH (%)</th>
-              <th>Wind (m/s)</th>
-              <th>Solar (MJ/m²)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((r) => (
-              <tr key={r.key}>
-                <td>{r.ts}</td>
-                <td>{r.transpiration ?? "-"}</td>
-                <td>{r.rain ?? "-"}</td>
-                <td>{r.evaporation ?? "-"}</td>
-                <td>{r.maxTemp ?? "-"}</td>
-                <td>{r.minTemp ?? "-"}</td>
-                <td>{r.maxRH ?? "-"}</td>
-                <td>{r.minRH ?? "-"}</td>
-                <td>{r.wind ?? "-"}</td>
-                <td>{r.solar ?? "-"}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-
-      {!loading && !error && rows.length === 0 && (
-        <p>Type a station name and click Fetch.</p>
-      )}
+    <div style={{width:'100%', height:'100%'}}>
+      <h2 style={{ margin: "0 0 12px" }}>Weather Summary — {stationName}</h2>
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(3, minmax(220px, 1fr))",
+        gap: 16,
+      }}>
+        {entries.map(([name, values], i) => (
+          <MetricCard key={name} name={name} values={values} color={palette[i % palette.length]} />
+        ))}
+      </div>
     </div>
   );
 }

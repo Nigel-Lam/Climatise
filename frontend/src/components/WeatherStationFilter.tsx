@@ -1,8 +1,11 @@
 import {useEffect, useState} from "react";
 
+import {useStationStore} from "../store.ts";
+
 
 export const WeatherStationFilter = () => {
     const [stations, setstations] = useState<string[]>([]);  // Just setting a default value
+    const {setStationName} = useStationStore();
 
     useEffect(
         () => {
@@ -18,7 +21,7 @@ export const WeatherStationFilter = () => {
     )
 
     const handleClick = (stationName: string) => {
-        console.log(`Changed station selection to: ${stationName}`);
+        setStationName(stationName);
     }
 
     if (stations.length === 0) return <div>No stations found.</div>;
