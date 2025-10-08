@@ -1,13 +1,19 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 interface StationState {
   earliest: Date | null;
   latest: Date | null;
-  stationName: string;
 
-  setEarliest: (date: Date) => void;
-  setLatest: (date: Date) => void;
+  // single-select (legacy)
+  stationName: string;
   setStationName: (name: string) => void;
+
+  // multi-select (new)
+  selectedStations: string[];
+  setSelectedStations: (names: string[]) => void;
+
+  setEarliest: (date: Date | null) => void;
+  setLatest: (date: Date | null) => void;
 
   reset: () => void;
 }
@@ -15,16 +21,22 @@ interface StationState {
 export const useStationStore = create<StationState>((set) => ({
   earliest: null,
   latest: null,
-  stationName: '',
+
+  // initialize BOTH so they’re defined from the start
+  stationName: "",
+  selectedStations: [],
+
+  setStationName: (name) => set({ stationName: name }),
+  setSelectedStations: (names) => set({ selectedStations: names }),
 
   setEarliest: (date) => set({ earliest: date }),
   setLatest: (date) => set({ latest: date }),
-  setStationName: (name) => set({ stationName: name }),
 
   reset: () =>
     set({
       earliest: null,
       latest: null,
-      stationName: '',
+      stationName: "",
+      selectedStations: [],
     }),
 }));
