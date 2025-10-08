@@ -2,6 +2,7 @@ import { NavBar } from "../components/NavBar";
 import { WeatherStationFilter } from "../components/WeatherStationFilter";
 import { DateRangePicker } from "../components/DateRangePicker";
 import StationWeather from "./StationWeather.tsx";
+import  { VictoriaMap }  from "../components/VictoriaMap.tsx";
 
 const HomePage = () => {
   return (
@@ -16,7 +17,7 @@ const HomePage = () => {
       <div className="mainContentWrapper flex w-full h-full flex-1">
         <div className="vizColumn flex flex-col w-2/3 h-full">
           <div className="mainViz flex w-full h-4/6 p-2">
-            <span className="border-2 h-full w-full">Main Viz</span>
+            <VictoriaMap/>
           </div>
 
           <div className="secondaryViz flex w-full h-2/6 p-2">
