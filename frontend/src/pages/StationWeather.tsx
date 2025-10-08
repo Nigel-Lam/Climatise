@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useStationStore } from "../store";
+import VegaLiteChart from "../components/Charts";
+
 
 type ApiSeries = Record<string, Array<number | null> | undefined>;
 type Series = Record<string, number[]>; // normalized to numbers (NaN for missing)
@@ -119,7 +121,7 @@ function MetricCard({ name, values, color }: { name: string; values: number[]; c
       </div>
 
       <div style={{ color }}>
-        <Sparkline data={values} />
+        <VegaLiteChart name={name} values={values}/>
       </div>
 
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "#555", fontVariantNumeric: "tabular-nums" }}>
