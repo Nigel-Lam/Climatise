@@ -6,3 +6,5 @@ frontend/package-lock.json
 venv/
 
 data/vic/
+
+node_modules/

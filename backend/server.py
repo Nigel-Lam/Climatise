@@ -3,6 +3,10 @@ import sqlite3
 from datetime import datetime
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
+from pathlib import Path
+from scripts.data_collection import download_new_csvs, save_last_download_time
+from scripts.preprocess import preprocess_all_stations
+from data.schema import Observation
 
 
 app = FastAPI()
@@ -14,6 +18,73 @@ app.add_middleware(
     allow_methods=['*'],  # "..."
     allow_headers=['*'],  # "..."
 )
+
+DB_PATH = "../data/victoria.db"
+
+def refresh_data():
+    print("Starting data refresh...")
+
+    download_new_csvs()  # your data_collection handles last_download internally
+
+    df = preprocess_all_stations()
+    if df.empty:
+        print("No new data to process.")
+        return
+
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+
+    # Create table if not exists
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS victoria (
+        station_name TEXT,
+        date TEXT,
+        evapo_transpiration REAL,
+        rain REAL,
+        pan_evaporation REAL,
+        maximum_temperature REAL,
+        minimum_temperature REAL,
+        maximum_relative_humidity REAL,
+        minimum_relative_humidity REAL,
+        average_wind_speed REAL,
+        solar_radiation REAL
+    )
+    """)
+
+    inserted_count = 0
+    for row in df.to_dict(orient="records"):
+        try:
+            obs = Observation(**row)
+            cursor.execute("""
+                INSERT OR IGNORE INTO victoria VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (
+                obs.station_name,
+                obs.date,
+                obs.evapo_transpiration,
+                obs.rain,
+                obs.pan_evaporation,
+                obs.maximum_temperature,
+                obs.minimum_temperature,
+                obs.maximum_relative_humidity,
+                obs.minimum_relative_humidity,
+                obs.average_wind_speed,
+                obs.solar_radiation
+            ))
+            inserted_count += 1
+        except Exception as e:
+            print(f"Validation failed for {row.get('Date')} at {row.get('Station Name')}: {e}")
+
+    conn.commit()
+    conn.close()
+    print(f"Inserted {inserted_count} new records into SQLite.")
+
+    save_last_download_time(datetime.now())
+    print("Data refresh complete.")
+
+
+@app.on_event("startup")
+def startup_event():
+    refresh_data()
 
 
 @app.get('/api/stations')

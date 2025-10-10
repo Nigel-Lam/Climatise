@@ -19,13 +19,9 @@ BOM_COLUMNS = [
 ]
 
 def clean_csv(path: str) -> pd.DataFrame:
-    """
-    Read a BOM CSV, skip header/footer, return cleaned DataFrame
-    with original BOM column names.
-    """
+    """Read a BOM CSV, skip header/footer, return cleaned DataFrame with BOM column names."""
     for enc in ["utf-8-sig", "latin1"]:
         try:
-            # Skip top 9 rows which are metadata
             df = pd.read_csv(path, skiprows=9, header=None, encoding=enc)
             break
         except Exception:
@@ -34,35 +30,27 @@ def clean_csv(path: str) -> pd.DataFrame:
         print(f"Failed to read {path}")
         return pd.DataFrame()
 
-    # Drop empty columns
     df = df.dropna(how="all", axis=1)
 
-    # Drop last row if it contains 'Totals' or similar
     if df.iloc[-1].astype(str).str.contains("Total|totals", case=False).any():
         df = df.iloc[:-1]
 
-    # Keep only the first 11 columns (BOM_COLUMNS)
     df = df.iloc[:, :len(BOM_COLUMNS)]
     df.columns = BOM_COLUMNS
-
-    # Fill station name if empty
     df["Station Name"] = df["Station Name"].fillna(Path(path).parent.name)
 
-    # Convert Date
     df["Date"] = pd.to_datetime(df["Date"], format="%d/%m/%Y", errors="coerce")
     df = df.dropna(subset=["Date"])
     df["Date"] = df["Date"].dt.strftime("%Y-%m-%d")
 
-    # Convert numeric columns
-    numeric_cols = BOM_COLUMNS[2:]
-    for col in numeric_cols:
+    for col in BOM_COLUMNS[2:]:
         df[col] = pd.to_numeric(df[col], errors="coerce")
 
     return df
 
 
 def preprocess_all_stations() -> pd.DataFrame:
-    """Go through all VIC stations, return combined DataFrame."""
+    """Process all VIC stations and return combined DataFrame."""
     all_dfs = []
 
     for station_dir in os.listdir(RAW_DIR):
@@ -74,7 +62,6 @@ def preprocess_all_stations() -> pd.DataFrame:
         if not csv_files:
             continue
 
-        # Process all CSV files (not just newest)
         for csv_file in sorted(csv_files):
             path = os.path.join(station_path, csv_file)
             print(f"Preprocessing {path}")
@@ -95,6 +82,12 @@ def preprocess_all_stations() -> pd.DataFrame:
     return pd.DataFrame()
 
 
+def save_preprocessed(df: pd.DataFrame, path="./data/combined_weather.csv"):
+    """Save combined preprocessed CSV for fast loading next time."""
+    df.to_csv(path, index=False)
+    print(f"Combined data saved to {path}")
+
+
 if __name__ == "__main__":
     df = preprocess_all_stations()
-    print(df.head())
+    save_preprocessed(df)
