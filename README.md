@@ -114,8 +114,7 @@ This command runs:
 
 **Terminal 1 - Backend:**
 ```bash
-cd backend
-uvicorn server:app --reload --host 127.0.0.1 --port 8000
+uvicorn backend.server:app --reload --host 127.0.0.1 --port 8000
 ```
 
 **Terminal 2 - Frontend:**
