@@ -11,4 +11,4 @@ class Observation(BaseModel):
     maximum_relative_humidity: float = Field(..., alias='Maximum Relative Humidity (%)')
     minimum_relative_humidity: float = Field(..., alias='Minimum Relative Humidity (%)')
     average_wind_speed: float = Field(..., alias='Average 10m Wind Speed (m/sec)')
-    solar_raditation: float = Field(..., alias='Solar Radiation (MJ/sq m)')
+    solar_radiation: float = Field(..., alias='Solar Radiation (MJ/sq m)')

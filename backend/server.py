@@ -62,9 +62,9 @@ def refresh_data():
             """, (
                 obs.station_name,
                 obs.date,
-                obs.evapo_transpiration,
+                obs.transpiration,
                 obs.rain,
-                obs.pan_evaporation,
+                obs.evaporation,
                 obs.maximum_temperature,
                 obs.minimum_temperature,
                 obs.maximum_relative_humidity,
@@ -91,7 +91,7 @@ def startup_event():
 
 @app.get('/api/stations')
 def get_stations() -> list[str]:
-    with sqlite3.connect('../data/victoria.db') as connection:
+    with sqlite3.connect(DB_PATH) as connection:
         results = connection.execute(
             '''
             SELECT DISTINCT station_name
@@ -112,7 +112,7 @@ def get_weather_by_station_name(
         earliest: datetime = Query(), # "..."
         latest: datetime = Query()    # "..."
 ) -> dict:
-    with sqlite3.connect('../data/victoria.db') as connection:
+    with sqlite3.connect(DB_PATH) as connection:
         results = connection.execute(
             '''
             SELECT -- We can actually handle a lot of the manipulation at query-time:
