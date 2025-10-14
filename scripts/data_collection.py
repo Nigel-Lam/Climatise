@@ -37,6 +37,12 @@ def download_new_csvs():
     now = datetime.now()
     print(f"Last update: {last_download.strftime('%Y-%m-%d')}")
 
+    # Skip if already downloaded today
+    if last_download.date() == now.date():
+        print("Already downloaded today; skipping.")
+        ftp.quit()
+        return
+
     # Generate list of months between last_download and now
     month_list = []
     current = last_download.replace(day=1)

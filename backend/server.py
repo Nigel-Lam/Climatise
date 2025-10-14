@@ -5,6 +5,7 @@ from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
 from scripts.data_collection import download_new_csvs, save_last_download_time
+import os
 from scripts.preprocess import preprocess_all_stations
 from data.schema import Observation
 
@@ -23,7 +24,6 @@ DB_PATH = "./data/victoria.db"
 
 def refresh_data():
     print("Starting data refresh...")
-    import os
     print("DB_PATH:", DB_PATH, "Exists:", os.path.exists(DB_PATH))
 
     download_new_csvs()  # your data_collection handles last_download internally
@@ -32,6 +32,11 @@ def refresh_data():
     if df.empty:
         print("No new data to process.")
         return
+    # Ensure no duplicate records per station/date within this batch
+    try:
+        df = df.drop_duplicates(subset=['Station Name', 'Date'], keep='last')
+    except Exception:
+        pass
 
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
@@ -53,15 +58,27 @@ def refresh_data():
     )
     """)
 
-    inserted_count = 0
+    # Proactively collapse any historical duplicates in the DB to avoid conflicts
+    try:
+        cursor.execute(
+            """
+            DELETE FROM victoria
+            WHERE rowid NOT IN (
+                SELECT MIN(rowid) FROM victoria GROUP BY station_name, date
+            )
+            """
+        )
+        conn.commit()
+    except Exception as e:
+        print("DB dedupe cleanup skipped:", e)
+
+    inserted = []
     for row in df.to_dict(orient="records"):
         try:
             obs = Observation(**row)
-            cursor.execute("""
-                INSERT OR IGNORE INTO victoria VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, (
-                obs.station_name,
-                obs.date,
+            inserted.append((
+                (obs.station_name or "").strip(),
+                (obs.date or "").strip(),
                 obs.transpiration,
                 obs.rain,
                 obs.evaporation,
@@ -70,14 +87,60 @@ def refresh_data():
                 obs.maximum_relative_humidity,
                 obs.minimum_relative_humidity,
                 obs.average_wind_speed,
-                obs.solar_radiation
+                obs.solar_radiation,
             ))
-            inserted_count += 1
         except Exception as e:
             print(f"Validation failed for {row.get('Date')} at {row.get('Station Name')}: {e}")
 
+    try:
+        cursor.executemany(
+            """
+            INSERT OR REPLACE INTO victoria (
+                station_name, date, evapo_transpiration, rain, pan_evaporation,
+                maximum_temperature, minimum_temperature,
+                maximum_relative_humidity, minimum_relative_humidity,
+                average_wind_speed, solar_radiation
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            inserted,
+        )
+        inserted_count = len(inserted)
+    except sqlite3.IntegrityError as e:
+        print("Batch insert hit UNIQUE error, falling back to row-by-row replace:", e)
+        inserted_count = 0
+        for params in inserted:
+            try:
+                cursor.execute("DELETE FROM victoria WHERE station_name = ? AND date = ?", (params[0], params[1]))
+                cursor.execute(
+                    """
+                    INSERT INTO victoria (
+                        station_name, date, evapo_transpiration, rain, pan_evaporation,
+                        maximum_temperature, minimum_temperature,
+                        maximum_relative_humidity, minimum_relative_humidity,
+                        average_wind_speed, solar_radiation
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    params,
+                )
+                inserted_count += 1
+            except Exception as inner_e:
+                print("Row failed after fallback for", params[0], params[1], ":", inner_e)
+
     conn.commit()
     conn.close()
+    
+    try:
+        vic_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "vic")
+        for station in os.listdir(vic_dir):
+            station_dir = os.path.join(vic_dir, station)
+            if not os.path.isdir(station_dir):
+                continue
+            for f in os.listdir(station_dir):
+                if f.endswith(".csv"):
+                    os.remove(os.path.join(station_dir, f))
+        print("Removed all local CSVs after insert.")
+    except Exception as e:
+        print("CSV cleanup failed:", e)
     print(f"Inserted {inserted_count} new records into SQLite.")
 
     save_last_download_time(datetime.now())
@@ -95,7 +158,7 @@ def get_stations() -> list[str]:
         results = connection.execute(
             '''
             SELECT DISTINCT station_name
-            FROM "victoria.db"
+            FROM victoria
             '''
         ).fetchall()
 
@@ -115,22 +178,22 @@ def get_weather_by_station_name(
     with sqlite3.connect(DB_PATH) as connection:
         results = connection.execute(
             '''
-            SELECT -- We can actually handle a lot of the manipulation at query-time:
+            SELECT
                     COALESCE(ROUND(maximum_temperature, 1), 0.0) AS maximum_temperature,
                     COALESCE(ROUND(minimum_temperature, 1), 0.0) AS minimum_temperature,
                     COALESCE(ROUND(average_wind_speed, 1), 0.0) AS average_wind_speed,
                     COALESCE(ROUND(maximum_relative_humidity, 1), 0.0) AS maximum_relative_humidity,
                     COALESCE(ROUND(minimum_relative_humidity, 1), 0.0) AS minimum_relative_humidity
-            FROM "victoria.db"
+            FROM victoria
             WHERE UPPER(station_name) = UPPER(:station_name)
-                AND (:earliest IS NULL OR date >= :earliest)
-                AND (:latest IS NULL OR date <= :latest)
+                AND (:earliest IS NULL OR DATE(date) >= DATE(:earliest))
+                AND (:latest IS NULL OR DATE(date) <= DATE(:latest))
             ORDER BY date DESC
             ''',
             {
-                'station_name': station_name,  # Personally, I prefer using named rather than positional parameters.
-                'earliest': earliest.strftime("%Y-%m-%d %H:%M:%S"),
-                'latest': latest.strftime("%Y-%m-%d %H:%M:%S"),
+                'station_name': station_name,
+                'earliest': earliest.strftime("%Y-%m-%d"),
+                'latest': latest.strftime("%Y-%m-%d"),
             }
         ).fetchall()
 
