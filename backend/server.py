@@ -19,10 +19,12 @@ app.add_middleware(
     allow_headers=['*'],  # "..."
 )
 
-DB_PATH = "../data/victoria.db"
+DB_PATH = "./data/victoria.db"
 
 def refresh_data():
     print("Starting data refresh...")
+    import os
+    print("DB_PATH:", DB_PATH, "Exists:", os.path.exists(DB_PATH))
 
     download_new_csvs()  # your data_collection handles last_download internally
 
