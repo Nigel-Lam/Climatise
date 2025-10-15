@@ -1,0 +1,28 @@
+'IDCKWCDE61,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for DARTMOOR Victoria for October 2025,,,,,,,,,,
+Issued at 06:31 GMT on Wednesday 15 October 2025,,,,,,,,,,
+© Copyright Commonwealth of Australia 2025 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+DARTMOOR,01/10/2025,2.4,5.4, ,15.0,7.7,96,63,5.18,15.82
+DARTMOOR,02/10/2025,2.1,9.8, ,14.0,6.5,94,69,4.33,13.53
+DARTMOOR,03/10/2025,2.0,4.8, ,15.8,9.6,96,72,2.56,13.21
+DARTMOOR,04/10/2025,4.0,0.2, ,23.7,5.9,97,45,3.11,21.89
+DARTMOOR,05/10/2025,2.7,0.0, ,19.6,13.9,95,37,4.15,4.90
+DARTMOOR,06/10/2025,2.6,9.4, ,14.2,8.7,83,49,2.69,15.00
+DARTMOOR,07/10/2025,2.1,0.0, ,14.4,9.2,94,63,4.27,11.15
+DARTMOOR,08/10/2025,2.7,0.6, ,17.9,9.6,94,59,5.31,12.25
+DARTMOOR,09/10/2025,3.4,4.2, ,17.3,8.9,96,48,6.43,17.46
+DARTMOOR,10/10/2025,3.3,1.2, ,16.9,10.6,90,58,7.79,17.43
+DARTMOOR,11/10/2025,2.4,1.6, ,16.4,8.2,95,66,4.11,13.66
+DARTMOOR,12/10/2025,2.6,2.0, ,16.8,8.4,97,62,3.42,16.35
+DARTMOOR,13/10/2025,2.1,6.0, ,13.9,1.9,98,56,2.31,12.96
+DARTMOOR,14/10/2025,3.3,1.0, ,17.5,8.6,96,55,3.11,21.91
+Totals:,,37.7,46.2, ,,,,,, 

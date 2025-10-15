@@ -1,0 +1,28 @@
+'IDCKWCDE61,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for YARRAWONGA Victoria for October 2025,,,,,,,,,,
+Issued at 06:31 GMT on Wednesday 15 October 2025,,,,,,,,,,
+© Copyright Commonwealth of Australia 2025 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+YARRAWONGA,01/10/2025,3.3,0.0, ,19.3,6.0,99,34,3.30,15.09
+YARRAWONGA,02/10/2025,3.7,0.0, ,17.2,9.0,99,35,5.97,18.18
+YARRAWONGA,03/10/2025,2.4,0.2, ,18.9,2.1,99,53,2.48,12.05
+YARRAWONGA,04/10/2025,3.5,0.0, ,24.6,1.6,100,34,1.27,22.42
+YARRAWONGA,05/10/2025,6.4,0.0, ,31.3,6.5,99,13,3.69,21.45
+YARRAWONGA,06/10/2025,2.8,0.0, ,17.3,12.6,93,43,3.75,10.48
+YARRAWONGA,07/10/2025,3.3,0.0, ,20.2,-0.1,99,33,1.68,21.52
+YARRAWONGA,08/10/2025,4.0,0.0, ,25.6,4.4,90,31,2.49,17.62
+YARRAWONGA,09/10/2025,4.7,0.8, ,23.0,10.9,91,30,3.61,23.28
+YARRAWONGA,10/10/2025,4.8,0.0, ,24.4,2.4,96,26,3.28,23.66
+YARRAWONGA,11/10/2025,4.4,0.0, ,23.5,7.2,89,28,2.58,22.73
+YARRAWONGA,12/10/2025,4.3,0.0, ,21.4,6.6,88,32,4.12,18.75
+YARRAWONGA,13/10/2025,4.1,0.0, ,20.4,2.9,99,26,2.57,23.91
+YARRAWONGA,14/10/2025,4.4,0.0, ,23.1,1.5,94,31,2.65,24.08
+Totals:,,56.1,1, ,,,,,, 

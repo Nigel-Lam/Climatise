@@ -1,0 +1,28 @@
+'IDCKWCDE61,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for RHYLL Victoria for October 2025,,,,,,,,,,
+Issued at 06:31 GMT on Wednesday 15 October 2025,,,,,,,,,,
+© Copyright Commonwealth of Australia 2025 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+RHYLL,01/10/2025,2.6,6.4, ,16.4,9.7,89,60,4.82,12.89
+RHYLL,02/10/2025,2.2,5.0, ,13.7,9.2,90,62,4.69,12.08
+RHYLL,03/10/2025,2.5,3.2, ,15.9,10.5,91,72,3.65,17.35
+RHYLL,04/10/2025,3.2,1.0, ,19.9,10.0,93,59,1.77,21.52
+RHYLL,05/10/2025,3.5,0.0, ,22.3,12.2,90,43,5.73,6.91
+RHYLL,06/10/2025,3.1,9.4, ,15.1,10.4,87,50,4.07,18.00
+RHYLL,07/10/2025,3.6,0.2, ,17.5,9.6,79,45,2.89,22.57
+RHYLL,08/10/2025,3.3, , ,20.8,10.9,90,49,2.47,17.95
+RHYLL,09/10/2025,3.0,0.0, ,17.9,12.3,91,50,2.91,16.80
+RHYLL,10/10/2025,4.5,0.0, ,19.9,12.1,63,47,6.76,15.77
+RHYLL,11/10/2025,3.4,0.0, ,19.0,12.0,91,45,3.20,17.84
+RHYLL,12/10/2025,3.2,1.6, ,18.4,11.4,90,50,3.45,16.50
+RHYLL,13/10/2025,3.5, , ,16.7,8.1,75,46,2.53,22.00
+RHYLL,14/10/2025,3.3,0.2, ,17.9,9.4,87,55,3.19,20.48
+Totals:,,44.9,27, ,,,,,, 

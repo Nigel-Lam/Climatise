@@ -1,0 +1,44 @@
+'IDCKWCDE61,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for YARRAWONGA Victoria for September 2025,,,,,,,,,,
+Issued at 22:31 GMT on Wednesday 01 October 2025,,,,,,,,,,
+© Copyright Commonwealth of Australia 2025 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+YARRAWONGA,01/09/2025,1.6,0.0, ,14.8,2.5,100,51,1.19,12.50
+YARRAWONGA,02/09/2025,1.9,0.0, ,15.8,-0.1,100,48,1.84,12.62
+YARRAWONGA,03/09/2025,3.2,0.0, ,20.9,5.6,92,36,3.44,14.24
+YARRAWONGA,04/09/2025,2.2,0.0, ,16.8,6.4,99,55,3.09,13.62
+YARRAWONGA,05/09/2025,2.1,0.0, ,15.0,-0.9,99,42,1.59,17.03
+YARRAWONGA,06/09/2025,2.6,0.0, ,19.6,1.9,99,57,3.65,17.32
+YARRAWONGA,07/09/2025,1.8,0.0, ,17.5,10.7,100,67,5.69,6.59
+YARRAWONGA,08/09/2025,3.2,5.4, ,21.3,9.9,100,30,2.50,17.88
+YARRAWONGA,09/09/2025,2.3,0.2, ,18.6,0.7,100,45,1.14,18.04
+YARRAWONGA,10/09/2025,1.2,0.0, ,12.9,4.7,100,71,2.38,6.24
+YARRAWONGA,11/09/2025,2.9,17.2, ,17.0,4.0,100,49,4.48,18.37
+YARRAWONGA,12/09/2025,2.3,0.0, ,16.6,2.0,100,56,2.87,16.84
+YARRAWONGA,13/09/2025,2.2,0.0, ,19.4,1.2,100,52,1.23,16.39
+YARRAWONGA,14/09/2025,2.7,0.0, ,20.1,4.7,100,47,2.46,15.21
+YARRAWONGA,15/09/2025,4.1,0.0, ,23.3,7.4,99,37,4.58,19.21
+YARRAWONGA,16/09/2025,1.6,0.2, ,14.9,12.1,100,55,2.69,6.11
+YARRAWONGA,17/09/2025,2.6,5.0, ,15.9,6.3,100,47,2.64,17.95
+YARRAWONGA,18/09/2025,2.9,0.2, ,18.5,1.6,100,43,2.67,19.56
+YARRAWONGA,19/09/2025,2.8,0.0, ,20.3,6.8,96,57,4.81,13.52
+YARRAWONGA,20/09/2025,2.8,0.4, ,15.6,5.8,99,46,4.31,17.61
+YARRAWONGA,21/09/2025,2.1,0.0, ,16.5,7.0,100,58,3.14,11.87
+YARRAWONGA,22/09/2025, ,0.2, , ,4.3,100,43,5.31,18.01
+YARRAWONGA,23/09/2025, , , , , , , , ,19.80
+YARRAWONGA,24/09/2025, , , ,18.6, ,100,51,2.86,12.46
+YARRAWONGA,25/09/2025,2.6,0.0, ,19.1,5.5,100,52,2.45,14.77
+YARRAWONGA,26/09/2025,5.3,0.0, ,26.5,8.6,99,19,4.04,20.34
+YARRAWONGA,27/09/2025,3.3,0.0, ,21.2,4.0,100,47,2.22,21.26
+YARRAWONGA,28/09/2025,3.2,0.6, ,18.8,4.4,99,38,2.79,19.02
+YARRAWONGA,29/09/2025,3.4,0.0, ,21.3,0.6,99,38,2.20,21.69
+YARRAWONGA,30/09/2025,4.6,0.0, ,24.5,11.8,82,25,4.83,9.71
+Totals:,,73.5,29.4, ,,,,,, 

@@ -1,0 +1,28 @@
+'IDCKWCDE61,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for REDESDALE Victoria for October 2025,,,,,,,,,,
+Issued at 06:31 GMT on Wednesday 15 October 2025,,,,,,,,,,
+© Copyright Commonwealth of Australia 2025 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+REDESDALE,01/10/2025,2.4,0.0, ,16.5,5.8,95,60,3.59,13.68
+REDESDALE,02/10/2025,2.5,3.2, ,15.1,5.8,92,52,3.22,13.87
+REDESDALE,03/10/2025,2.8,0.0, ,20.0,6.9,96,56,1.96,17.73
+REDESDALE,04/10/2025,3.4,0.0, ,22.5,2.5,100,43,1.66,22.27
+REDESDALE,05/10/2025,4.0,0.0, ,27.9,6.1,94,26,2.02,16.66
+REDESDALE,06/10/2025,2.7,3.6, ,16.9,8.9,93,42,2.15,15.35
+REDESDALE,07/10/2025,3.1,0.0, ,17.8,0.1,99,44,2.09,21.86
+REDESDALE,08/10/2025,3.4,0.0, ,22.6,1.9,98,43,1.99,20.18
+REDESDALE,09/10/2025,3.7,0.0, ,20.3,4.8,96,39,2.43,22.40
+REDESDALE,10/10/2025,4.3,0.0, ,20.9,5.6,89,39,4.81,21.17
+REDESDALE,11/10/2025,3.8,0.0, ,20.3,8.7,90,39,3.06,20.14
+REDESDALE,12/10/2025,2.3,0.0, ,17.4,3.4,98,49,2.12,12.27
+REDESDALE,13/10/2025,3.1,3.0, ,17.4,-0.7,99,38,1.26,24.01
+REDESDALE,14/10/2025,3.6,0.0, ,21.6,0.8,96,42,1.75,23.22
+Totals:,,45.1,9.8, ,,,,,, 

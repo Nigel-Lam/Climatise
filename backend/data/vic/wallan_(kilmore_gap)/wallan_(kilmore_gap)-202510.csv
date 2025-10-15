@@ -1,0 +1,28 @@
+'IDCKWCDE61,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for WALLAN (KILMORE GAP) Victoria for October 2025,,,,,,,,,,
+Issued at 06:31 GMT on Wednesday 15 October 2025,,,,,,,,,,
+© Copyright Commonwealth of Australia 2025 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+WALLAN (KILMORE GAP),01/10/2025,2.0,0.0, ,12.6,4.9,95,70,7.99,12.62
+WALLAN (KILMORE GAP),02/10/2025,2.2,0.8, ,10.9,4.6,89,61,7.60,11.54
+WALLAN (KILMORE GAP),03/10/2025,2.5,0.0, ,15.8,6.5,96,60,4.71,14.46
+WALLAN (KILMORE GAP),04/10/2025,3.6,0.0, ,18.5,7.7,97,54,5.97,22.15
+WALLAN (KILMORE GAP),05/10/2025,5.5,0.0, ,22.4,11.4,77,33,9.77,11.89
+WALLAN (KILMORE GAP),06/10/2025,2.5,3.0, ,12.5,7.1,96,54,5.09,15.23
+WALLAN (KILMORE GAP),07/10/2025,3.2,0.0, ,14.4,4.8,92,55,6.61,22.40
+WALLAN (KILMORE GAP),08/10/2025,3.9,0.0, ,18.9,5.9,81,51,8.49,16.42
+WALLAN (KILMORE GAP),09/10/2025,3.7,0.0, ,17.2,7.2,88,44,6.13,18.52
+WALLAN (KILMORE GAP),10/10/2025,4.6,0.0, ,17.8,8.5,74,46,10.11,20.58
+WALLAN (KILMORE GAP),11/10/2025,3.7,0.0, ,17.2,6.6,92,44,6.34,19.47
+WALLAN (KILMORE GAP),12/10/2025,2.6,0.0, ,15.2,5.6,93,55,5.46,12.72
+WALLAN (KILMORE GAP),13/10/2025,2.9,3.8, ,13.4,2.9,92,54,4.65,21.31
+WALLAN (KILMORE GAP),14/10/2025,3.6,0.0, ,17.6,5.3,79,45,3.32,20.96
+Totals:,,46.5,7.6, ,,,,,, 

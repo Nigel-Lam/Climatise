@@ -1,0 +1,28 @@
+'IDCKWCDE61,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for CHARLTON Victoria for October 2025,,,,,,,,,,
+Issued at 06:31 GMT on Wednesday 15 October 2025,,,,,,,,,,
+© Copyright Commonwealth of Australia 2025 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+CHARLTON,01/10/2025,3.3,0.4, ,18.5,5.7,100,44,4.45,17.41
+CHARLTON,02/10/2025,3.6,0.4, ,17.4,6.6,99,41,5.35,19.80
+CHARLTON,03/10/2025,2.9,0.0, ,19.9,8.9,99,52,3.13,15.85
+CHARLTON,04/10/2025,4.0,0.0, ,25.5,2.2,100,28,1.73,22.35
+CHARLTON,05/10/2025,6.5,0.0, ,31.4,10.5,73,14,3.87,19.49
+CHARLTON,06/10/2025,2.8,1.4, ,16.5,10.5,99,44,3.16,14.88
+CHARLTON,07/10/2025,3.5,0.0, ,20.1,1.5,99,34,2.18,21.77
+CHARLTON,08/10/2025,3.8,0.0, ,24.4,3.2,99,36,2.00,21.37
+CHARLTON,09/10/2025,4.3,0.0, ,21.9,6.5,100,32,3.56,21.84
+CHARLTON,10/10/2025,5.2,0.0, ,23.7,6.4,86,32,5.02,22.81
+CHARLTON,11/10/2025,4.3,0.0, ,22.1,7.7,92,34,3.91,19.92
+CHARLTON,12/10/2025,3.3,0.0, ,20.9,5.9,100,37,3.84,11.61
+CHARLTON,13/10/2025,3.5,0.0, ,20.0,0.6,100,27,1.46,23.38
+CHARLTON,14/10/2025,3.9,0.0, ,22.7,3.7,99,27,2.45,19.43
+Totals:,,54.9,2.2, ,,,,,, 

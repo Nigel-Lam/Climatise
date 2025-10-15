@@ -1,0 +1,28 @@
+'IDCKWCDE61,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for ESSENDON AIRPORT Victoria for October 2025,,,,,,,,,,
+Issued at 06:31 GMT on Wednesday 15 October 2025,,,,,,,,,,
+© Copyright Commonwealth of Australia 2025 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+ESSENDON AIRPORT,01/10/2025,4.0,0.0, ,18.1,9.5,73,48,7.78,15.62
+ESSENDON AIRPORT,02/10/2025,3.2,2.6, ,15.5,7.9,89,45,8.27,10.08
+ESSENDON AIRPORT,03/10/2025,3.4,0.6, ,19.8,10.4,87,54,5.97,14.66
+ESSENDON AIRPORT,04/10/2025,4.7,0.0, ,25.0,8.2,95,35,3.88,22.02
+ESSENDON AIRPORT,05/10/2025,5.6,0.0, ,26.2,16.2,77,33,7.93,8.39
+ESSENDON AIRPORT,06/10/2025,3.7,2.2, ,17.8,10.9,89,35,5.72,13.85
+ESSENDON AIRPORT,07/10/2025,4.2,0.0, ,19.6,7.6,82,35,4.20,21.64
+ESSENDON AIRPORT,08/10/2025,5.1,0.0, ,23.8,8.4,73,36,5.65,18.30
+ESSENDON AIRPORT,09/10/2025,5.2,0.0, ,21.6,10.8,72,31,6.52,18.10
+ESSENDON AIRPORT,10/10/2025,6.0,0.0, ,21.5,12.4,57,33,9.43,13.62
+ESSENDON AIRPORT,11/10/2025,5.3,0.0, ,22.8,12.2,83,29,6.32,17.81
+ESSENDON AIRPORT,12/10/2025,4.2,0.2, ,19.8,9.1,93,37,6.15,16.89
+ESSENDON AIRPORT,13/10/2025,3.6,5.0, ,17.7,5.7,88,36,3.15,20.93
+ESSENDON AIRPORT,14/10/2025,4.5,0.0, ,21.5,6.9,89,36,4.45,22.37
+Totals:,,62.7,10.6, ,,,,,, 

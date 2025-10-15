@@ -1,0 +1,45 @@
+'IDCKWCDE61,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for REDESDALE Victoria for August 2025,,,,,,,,,,
+Issued at 22:31 GMT on Monday 01 September 2025,,,,,,,,,,
+© Copyright Commonwealth of Australia 2025 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+REDESDALE,01/08/2025, , , ,14.8, ,95,44,2.66,11.91
+REDESDALE,02/08/2025,1.9,0.0, ,17.8,3.8,93,37,2.32,12.11
+REDESDALE,03/08/2025,1.5,0.0, ,17.6,0.0,96,42,1.35,12.22
+REDESDALE,04/08/2025,1.5,0.0, ,17.0,0.5,100,65,2.97,10.98
+REDESDALE,05/08/2025,1.3,5.2, ,14.4,6.5,100,60,2.04,11.11
+REDESDALE,06/08/2025,1.4,0.0, ,16.0,3.3,99,48,1.51,12.10
+REDESDALE,07/08/2025,1.4,0.4, ,13.4,-1.3,96,50,1.92,12.71
+REDESDALE,08/08/2025,1.8,0.0, ,15.9,1.2,95,46,2.70,12.82
+REDESDALE,09/08/2025,1.6,0.0, ,17.1,1.3,98,44,1.57,12.95
+REDESDALE,10/08/2025,1.6,0.2, ,17.3,1.6,96,47,1.50,13.09
+REDESDALE,11/08/2025,1.7,0.2, ,16.2,1.3,97,48,1.91,13.23
+REDESDALE,12/08/2025,0.9,0.0, ,10.8,2.1,99,72,1.29,6.26
+REDESDALE,13/08/2025,1.5,6.0, ,15.4,1.5,100,50,1.76,12.09
+REDESDALE,14/08/2025,1.6,0.4, ,17.0,-0.3,100,34,1.16,13.64
+REDESDALE,15/08/2025,1.1,0.0, ,12.9,2.8,98,67,1.74,8.16
+REDESDALE,16/08/2025,1.5,1.6, ,12.8,0.6,100,48,1.74,12.66
+REDESDALE,17/08/2025,0.8,0.0, ,9.1,-0.7,98,81,1.47,7.83
+REDESDALE,18/08/2025,1.9,0.2, ,12.9,3.4,90,52,3.61,13.56
+REDESDALE,19/08/2025,1.9,0.0, ,14.8,0.5,91,44,2.47,14.23
+REDESDALE,20/08/2025,2.2,0.0, ,18.3,-0.2,93,33,1.90,14.52
+REDESDALE,21/08/2025,2.0,0.0, ,19.9,1.8,88,42,1.33,14.60
+REDESDALE,22/08/2025,1.5,0.0, ,17.3,6.4,98,63,1.27,10.80
+REDESDALE,23/08/2025,2.0,0.2, ,17.6,2.0,100,53,2.55,12.80
+REDESDALE,24/08/2025,2.2,0.0, ,16.8,0.4,97,33,2.01,15.13
+REDESDALE,25/08/2025,1.8,0.0, ,16.7,0.6,98,47,1.77,13.20
+REDESDALE,26/08/2025,0.9,6.4, ,10.4,8.3,99,70,2.31,3.24
+REDESDALE,27/08/2025,1.8,18.6, ,14.2,7.8,99,58,3.49,10.83
+REDESDALE,28/08/2025,1.8,4.2, ,14.2,6.8,96,65,3.88,11.86
+REDESDALE,29/08/2025,1.6,2.8, ,10.7,6.0,99,60,5.28,9.04
+REDESDALE,30/08/2025,2.2,4.2, ,13.1,4.8,92,54,5.20,12.72
+REDESDALE,31/08/2025,1.7,0.2, ,15.9,6.8,98,58,1.67,11.71
+Totals:,,48.6,50.8, ,,,,,, 

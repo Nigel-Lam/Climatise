@@ -1,0 +1,28 @@
+'IDCKWCDE61,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for MOUNT HOTHAM Victoria for October 2025,,,,,,,,,,
+Issued at 06:31 GMT on Wednesday 15 October 2025,,,,,,,,,,
+© Copyright Commonwealth of Australia 2025 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+MOUNT HOTHAM,01/10/2025,0.5,2.2, ,0.2,-2.1,100,92,11.56,6.24
+MOUNT HOTHAM,02/10/2025,0.5,11.8, ,-0.4,-3.7,100,99,8.76,10.32
+MOUNT HOTHAM,03/10/2025,1.1,15.6, ,7.5,-3.6,100,84,7.60,10.94
+MOUNT HOTHAM,04/10/2025,2.7,0.0, ,9.8,-0.5,82,52,3.57,22.47
+MOUNT HOTHAM,05/10/2025,3.8,0.0, ,11.2,4.1,71,47,12.73,22.76
+MOUNT HOTHAM,06/10/2025,1.7,7.8, ,2.5,1.5,100,48,9.04,13.50
+MOUNT HOTHAM,07/10/2025,1.5,0.0, ,4.5,-3.1,100,78,10.11,23.25
+MOUNT HOTHAM,08/10/2025,2.1,0.0, ,7.2,-1.9,96,61,12.41,20.85
+MOUNT HOTHAM,09/10/2025,2.0,11.0, ,6.5,1.9,87,66,10.99,17.22
+MOUNT HOTHAM,10/10/2025,2.3,0.2, ,6.6,1.7,84,65,14.76,21.82
+MOUNT HOTHAM,11/10/2025,1.6,0.0, ,5.4,-0.1,99,74,11.21,18.25
+MOUNT HOTHAM,12/10/2025,1.1,0.0, ,4.8,0.1,100,81,9.14,10.25
+MOUNT HOTHAM,13/10/2025,2.2,10.2, ,6.8,-4.8,100,64,4.41,24.37
+MOUNT HOTHAM,14/10/2025,2.5,0.2, ,9.0,-3.9,100,57,6.83,24.72
+Totals:,,25.6,59, ,,,,,, 

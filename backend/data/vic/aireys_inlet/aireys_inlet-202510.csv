@@ -1,0 +1,28 @@
+'IDCKWCDE61,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for AIREYS INLET Victoria for October 2025,,,,,,,,,,
+Issued at 06:31 GMT on Wednesday 15 October 2025,,,,,,,,,,
+© Copyright Commonwealth of Australia 2025 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+AIREYS INLET,01/10/2025,2.0,1.6, ,14.4,8.6,95,66,6.35,9.29
+AIREYS INLET,02/10/2025,2.4,9.8, ,14.8,6.6,93,68,7.92,15.02
+AIREYS INLET,03/10/2025,3.1,0.8, ,19.4,7.7,95,58,4.44,17.20
+AIREYS INLET,04/10/2025,3.9,0.0, ,22.8,8.0,95,46,3.23,21.27
+AIREYS INLET,05/10/2025,5.4,0.0, ,24.7,12.3,94,30,8.24,11.99
+AIREYS INLET,06/10/2025,3.4,6.0, ,16.2,9.3,88,45,4.72,18.54
+AIREYS INLET,07/10/2025,3.2,0.0, ,16.2,6.9,85,51,5.14,18.14
+AIREYS INLET,08/10/2025,4.1,0.0, ,19.5,7.5,80,45,6.24,19.30
+AIREYS INLET,09/10/2025,4.7,0.0, ,18.4,10.3,89,36,9.26,20.82
+AIREYS INLET,10/10/2025,5.6,0.4, ,20.0,9.4,67,42,11.52,21.75
+AIREYS INLET,11/10/2025,3.2,0.0, ,17.4,11.0,86,58,4.83,17.67
+AIREYS INLET,12/10/2025,3.3,0.6, ,18.0,9.8,95,50,5.93,15.50
+AIREYS INLET,13/10/2025,3.1,6.0, ,16.0,6.2,80,45,2.70,18.26
+AIREYS INLET,14/10/2025,3.8,0.2, ,19.0,7.7,88,44,4.63,20.11
+Totals:,,51.2,25.4, ,,,,,, 

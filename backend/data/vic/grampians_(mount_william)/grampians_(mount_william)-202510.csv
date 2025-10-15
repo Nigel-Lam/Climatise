@@ -1,0 +1,28 @@
+'IDCKWCDE61,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for GRAMPIANS (MOUNT WILLIAM) Victoria for October 2025,,,,,,,,,,
+Issued at 06:31 GMT on Wednesday 15 October 2025,,,,,,,,,,
+© Copyright Commonwealth of Australia 2025 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+GRAMPIANS (MOUNT WILLIAM),01/10/2025,0.9,9.2, ,6.4,1.6,100,86,9.63,9.62
+GRAMPIANS (MOUNT WILLIAM),02/10/2025,0.9,13.4, ,5.3,-0.5,100,92,10.51,14.07
+GRAMPIANS (MOUNT WILLIAM),03/10/2025,1.2,4.6, ,10.2,0.6,100,91,7.88,14.00
+GRAMPIANS (MOUNT WILLIAM),04/10/2025, ,0.4, , ,5.1,94,28,7.42,22.26
+GRAMPIANS (MOUNT WILLIAM),05/10/2025,4.2, , ,17.4,8.2,100,29,10.87,11.57
+GRAMPIANS (MOUNT WILLIAM),06/10/2025,1.5,13.8, ,6.7,1.1,100,73,5.45,14.30
+GRAMPIANS (MOUNT WILLIAM),07/10/2025,1.2,0.2, ,5.6,0.2,98,86,7.92,16.15
+GRAMPIANS (MOUNT WILLIAM),08/10/2025,1.4,0.2, ,9.4,1.5,100,77,9.50,12.10
+GRAMPIANS (MOUNT WILLIAM),09/10/2025,1.8,0.8, ,8.4,2.6,100,70,10.93,16.76
+GRAMPIANS (MOUNT WILLIAM),10/10/2025,1.3,1.2, ,8.2,3.5,100,78,16.07,11.92
+GRAMPIANS (MOUNT WILLIAM),11/10/2025,1.9,9.0, ,9.2,3.6,100,70,8.46,16.52
+GRAMPIANS (MOUNT WILLIAM),12/10/2025,1.1,9.6, ,7.1,3.1,100,88,7.73,12.88
+GRAMPIANS (MOUNT WILLIAM),13/10/2025,2.2,11.4, ,9.1,-0.9,99,68,4.61,22.33
+GRAMPIANS (MOUNT WILLIAM),14/10/2025,3.3,0.4, ,11.2,1.0,100,33,5.87,22.86
+Totals:,,22.9,74.2, ,,,,,, 

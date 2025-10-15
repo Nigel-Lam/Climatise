@@ -1,0 +1,28 @@
+'IDCKWCDE61,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for WESTMERE Victoria for October 2025,,,,,,,,,,
+Issued at 06:31 GMT on Wednesday 15 October 2025,,,,,,,,,,
+© Copyright Commonwealth of Australia 2025 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+WESTMERE,01/10/2025, , , ,16.1, ,94,56,6.76,15.65
+WESTMERE,02/10/2025,2.3,2.6, ,13.6,5.4,93,65,7.23,14.74
+WESTMERE,03/10/2025, ,0.4, , ,8.3,97,67,4.16,13.52
+WESTMERE,04/10/2025,3.6, , ,22.6,2.3,98,50,2.60,22.00
+WESTMERE,05/10/2025,3.7,0.0, ,22.7,8.6,94,40,5.73,8.50
+WESTMERE,06/10/2025,2.8,5.0, ,14.8,7.7,92,51,3.61,17.46
+WESTMERE,07/10/2025, ,0.0, , ,6.1,89,54,4.28,18.00
+WESTMERE,08/10/2025,3.5, , ,19.3,1.1,96,47,4.31,19.82
+WESTMERE,09/10/2025,3.6,0.0, ,18.4,5.2,93,45,6.37,15.66
+WESTMERE,10/10/2025,4.3,0.0, ,19.2,8.9,84,46,9.33,16.92
+WESTMERE,11/10/2025,3.8,0.8, ,19.7,8.7,93,44,5.36,18.27
+WESTMERE,12/10/2025,2.8,2.2, ,16.6,6.0,95,58,4.85,16.04
+WESTMERE,13/10/2025,2.9,6.6, ,16.4,-0.1,97,50,2.04,21.42
+WESTMERE,14/10/2025,3.5,0.0, ,18.8,2.7,96,48,3.51,22.40
+Totals:,,36.8,17.6, ,,,,,, 

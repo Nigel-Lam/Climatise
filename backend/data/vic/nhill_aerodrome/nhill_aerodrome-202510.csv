@@ -1,0 +1,28 @@
+'IDCKWCDE61,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for NHILL AERODROME Victoria for October 2025,,,,,,,,,,
+Issued at 06:31 GMT on Wednesday 15 October 2025,,,,,,,,,,
+© Copyright Commonwealth of Australia 2025 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+NHILL AERODROME,01/10/2025,2.8,0.2, ,15.9,6.2,98,55,7.45,14.48
+NHILL AERODROME,02/10/2025,3.8,2.0, ,16.5,6.2,90,43,8.29,19.61
+NHILL AERODROME,03/10/2025,3.1,0.2, ,18.4,9.1,90,55,5.45,14.23
+NHILL AERODROME,04/10/2025,4.9,0.0, ,27.4,3.8,100,19,2.63,22.31
+NHILL AERODROME,05/10/2025,6.2,0.0, ,29.2,14.4,100,15,5.84,13.01
+NHILL AERODROME,06/10/2025,2.9,1.6, ,16.4,9.8,100,45,4.88,13.30
+NHILL AERODROME,07/10/2025,3.4,0.2, ,17.9,8.4,92,42,4.26,17.16
+NHILL AERODROME,08/10/2025,3.9,0.0, ,20.4,4.3,100,40,4.71,19.31
+NHILL AERODROME,09/10/2025,4.5,0.0, ,19.8,7.5,100,36,7.70,20.09
+NHILL AERODROME,10/10/2025,5.0,0.0, ,21.0,7.2,86,38,8.51,19.10
+NHILL AERODROME,11/10/2025,4.5,0.0, ,20.6,8.0,100,35,6.76,19.32
+NHILL AERODROME,12/10/2025,4.1,0.0, ,19.6,7.5,100,40,6.87,19.27
+NHILL AERODROME,13/10/2025,4.0,0.2, ,19.8,3.4,100,31,3.05,23.71
+NHILL AERODROME,14/10/2025,4.6,0.0, ,21.3,5.9,100,30,4.31,23.43
+Totals:,,57.7,4.4, ,,,,,, 

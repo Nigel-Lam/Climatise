@@ -1,0 +1,28 @@
+'IDCKWCDE61,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for MOUNT BULLER Victoria for October 2025,,,,,,,,,,
+Issued at 06:31 GMT on Wednesday 15 October 2025,,,,,,,,,,
+© Copyright Commonwealth of Australia 2025 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+MOUNT BULLER,01/10/2025,0.4,3.2, ,1.4,-1.5,100,100,10.56,6.76
+MOUNT BULLER,02/10/2025,0.4,13.2, ,0.4,-3.1,100,100,8.02,7.35
+MOUNT BULLER,03/10/2025,0.5,18.8, ,7.3,-2.8,100,100,8.05,7.03
+MOUNT BULLER,04/10/2025,3.2,0.6, ,12.0,0.3,100,36,5.09,22.30
+MOUNT BULLER,05/10/2025,4.4,0.0, ,14.2,5.7,78,33,11.58,19.66
+MOUNT BULLER,06/10/2025,1.1,14.2, ,1.4,0.4,100,75,5.95,11.30
+MOUNT BULLER,07/10/2025,1.5,0.0, ,5.8,-2.1,100,80,8.44,19.97
+MOUNT BULLER,08/10/2025,1.6,0.0, ,9.8,-0.9,99,74,11.26,13.73
+MOUNT BULLER,09/10/2025,1.7,0.4, ,6.7,1.7,100,74,8.49,18.81
+MOUNT BULLER,10/10/2025,1.9,0.2, ,8.0,1.7,100,69,14.93,21.25
+MOUNT BULLER,11/10/2025,1.4,0.0, ,6.1,0.5,100,81,7.81,16.52
+MOUNT BULLER,12/10/2025,0.8,0.0, ,3.2,0.2,100,98,6.08,11.44
+MOUNT BULLER,13/10/2025,1.9,14.4, ,7.6,-5.0,100,79,5.53,24.10
+MOUNT BULLER,14/10/2025,2.1,0.0, ,8.1,-3.7,99,71,6.24,23.57
+Totals:,,22.9,65, ,,,,,, 

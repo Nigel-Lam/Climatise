@@ -1,0 +1,28 @@
+'IDCKWCDE61,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for SHE OAKS Victoria for October 2025,,,,,,,,,,
+Issued at 06:31 GMT on Wednesday 15 October 2025,,,,,,,,,,
+© Copyright Commonwealth of Australia 2025 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+SHE OAKS,01/10/2025,3.2,2.0, ,16.4,7.3,87,50,6.42,15.46
+SHE OAKS,02/10/2025,2.5,3.4, ,12.9,6.2,90,62,7.47,15.04
+SHE OAKS,03/10/2025,2.4,2.4, ,16.5,9.0,97,67,5.46,14.12
+SHE OAKS,04/10/2025,3.9,0.4, ,22.9,7.0,100,40,2.90,21.95
+SHE OAKS,05/10/2025,5.8,0.0, ,26.1,13.3,96,25,7.69,13.03
+SHE OAKS,06/10/2025,2.7,7.4, ,13.8,8.5,96,50,4.42,15.48
+SHE OAKS,07/10/2025,3.2,0.0, ,15.7,6.3,87,51,3.71,21.73
+SHE OAKS,08/10/2025,3.7,0.0, ,20.0,4.6,97,49,4.38,21.63
+SHE OAKS,09/10/2025,3.7,0.0, ,17.6,9.4,98,40,5.41,20.21
+SHE OAKS,10/10/2025,5.0,0.2, ,19.4,10.0,64,40,7.64,19.25
+SHE OAKS,11/10/2025,4.5,0.0, ,19.0,10.4,94,33,6.62,21.07
+SHE OAKS,12/10/2025,3.0,1.2, ,17.4,8.0,97,49,4.57,14.92
+SHE OAKS,13/10/2025,3.1,6.2, ,16.0,0.9,100,45,2.12,23.83
+SHE OAKS,14/10/2025,3.6,0.0, ,18.2,5.3,96,45,4.03,21.89
+Totals:,,50.3,23.2, ,,,,,, 

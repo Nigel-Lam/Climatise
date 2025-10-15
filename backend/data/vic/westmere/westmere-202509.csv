@@ -1,0 +1,44 @@
+'IDCKWCDE61,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for WESTMERE Victoria for September 2025,,,,,,,,,,
+Issued at 22:31 GMT on Wednesday 01 October 2025,,,,,,,,,,
+© Copyright Commonwealth of Australia 2025 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+WESTMERE,01/09/2025,1.7,0.2, ,14.2,4.8,96,65,2.88,12.22
+WESTMERE,02/09/2025,2.3,0.6, ,15.4,4.8,96,56,4.84,13.85
+WESTMERE,03/09/2025,2.5,0.8, ,15.5,9.6,91,56,5.04,14.57
+WESTMERE,04/09/2025, ,2.2, , ,6.7,93,57,4.42,12.76
+WESTMERE,05/09/2025, , , , , ,96,56,2.48,16.61
+WESTMERE,06/09/2025, , , , , ,92,49,5.10,13.99
+WESTMERE,07/09/2025,3.4, , ,19.4,10.4,89,49,7.92,10.36
+WESTMERE,08/09/2025,2.4,2.0, ,17.1,10.1,91,61,4.68,12.67
+WESTMERE,09/09/2025, ,0.0, , ,6.8,95,63,2.88,14.36
+WESTMERE,10/09/2025,1.4, , ,12.0,1.1,97,75,3.56,10.95
+WESTMERE,11/09/2025,1.8,0.4, ,13.1,4.3,96,69,3.83,14.20
+WESTMERE,12/09/2025,1.8,1.2, ,15.2,1.9,98,69,3.01,12.98
+WESTMERE,13/09/2025,2.1,0.2, ,16.7,9.2,96,64,2.67,13.04
+WESTMERE,14/09/2025,3.4,0.2, ,18.7,4.0,95,47,6.28,18.48
+WESTMERE,15/09/2025,5.1,0.0, ,22.5,8.1,75,39,8.06,18.40
+WESTMERE,16/09/2025,2.7,0.0, ,16.4,10.4,91,57,5.66,14.34
+WESTMERE,17/09/2025,2.4,0.8, ,13.2,5.4,93,54,4.09,15.93
+WESTMERE,18/09/2025,3.4,0.4, ,18.9,0.9,95,47,5.52,18.82
+WESTMERE,19/09/2025, ,0.0, , ,7.7,92,45,6.85,17.78
+WESTMERE,20/09/2025, , , , , ,93,54,5.20,14.99
+WESTMERE,21/09/2025, , , , , ,93,67,5.29,11.54
+WESTMERE,22/09/2025, , , , , ,94,62,4.22,16.23
+WESTMERE,23/09/2025,2.0, , ,14.7,6.1,95,68,4.03,12.59
+WESTMERE,24/09/2025,2.2,0.2, ,15.8,9.5,94,69,4.50,13.43
+WESTMERE,25/09/2025,1.8,0.0, ,14.6,8.7,92,70,4.76,9.05
+WESTMERE,26/09/2025,3.0,0.0, ,19.2,7.9,87,52,5.21,11.91
+WESTMERE,27/09/2025,2.7,0.0, ,16.1,6.3,94,51,4.69,13.46
+WESTMERE,28/09/2025, ,1.0, , ,5.1,96,49,2.20,17.14
+WESTMERE,29/09/2025, , , , , ,96,48,3.81,14.26
+WESTMERE,30/09/2025, , , , , ,97,58,4.03,16.12
+Totals:,,48.1,10.2, ,,,,,, 

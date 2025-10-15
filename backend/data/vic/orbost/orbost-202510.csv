@@ -1,0 +1,28 @@
+'IDCKWCDE61,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for ORBOST Victoria for October 2025,,,,,,,,,,
+Issued at 06:31 GMT on Wednesday 15 October 2025,,,,,,,,,,
+© Copyright Commonwealth of Australia 2025 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+ORBOST,01/10/2025,4.0,0.0, ,20.3,7.8,96,29,3.82,19.40
+ORBOST,02/10/2025, ,0.0, , ,6.7,83,29,3.39,15.38
+ORBOST,03/10/2025, , , ,19.3, ,88,49,4.34,14.30
+ORBOST,04/10/2025,3.0,0.0, ,18.3,8.5,96,59,1.81,21.70
+ORBOST,05/10/2025,4.3,0.2, ,29.5,8.7,96,24,2.06,18.16
+ORBOST,06/10/2025,2.4,4.8, ,15.9,10.4,94,51,3.27,11.35
+ORBOST,07/10/2025,3.4,0.0, ,19.5,4.5,95,40,1.73,22.85
+ORBOST,08/10/2025,3.5,0.0, ,26.4,5.7,95,32,1.04,20.15
+ORBOST,09/10/2025,4.4,0.0, ,24.4,11.5,98,28,2.48,22.54
+ORBOST,10/10/2025,6.0,0.0, ,26.0,5.5,94,21,5.09,23.54
+ORBOST,11/10/2025,4.3,0.0, ,24.5,8.7,91,24,1.95,23.24
+ORBOST,12/10/2025,2.9,0.0, ,17.6,7.9,97,53,1.97,18.67
+ORBOST,13/10/2025,2.9,2.0, ,15.0,6.8,91,48,2.76,18.62
+ORBOST,14/10/2025,3.6,0.0, ,19.9,3.4,94,45,1.94,24.26
+Totals:,,44.7,7, ,,,,,, 

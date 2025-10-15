@@ -1,0 +1,28 @@
+'IDCKWCDE61,,,,,,,,,,
+Australian Government Bureau of Meteorology,,,,,,,,,,
+South Australia,,,,,,,,,,
+
+Daily Evapotranspiration for PORT FAIRY Victoria for October 2025,,,,,,,,,,
+Issued at 06:31 GMT on Wednesday 15 October 2025,,,,,,,,,,
+© Copyright Commonwealth of Australia 2025 Bureau of Meteorology (ABN 92 637 533 532),,,,,,,,,,
+Please note Copyright Disclaimer and Privacy Notice <http://www.bom.gov.au/other/copyright.shtml>,,,,,,,,,,
+
+,,Evapo-,,Pan,,,Maximum,Minimum,Average,
+,,Transpiration,Rain,Evaporation,Maximum,Minimum,Relative,Relative,10m Wind,Solar
+Station Name,Date,0000-2400,0900-0900,0900-0900,Temperature,Temperature,Humidity,Humidity,Speed,Radiation
+,,(mm),(mm),(mm),(°C),(°C),(%),(%),(m/sec),(MJ/sq m)
+PORT FAIRY,01/10/2025,2.6,9.8, ,16.6,8.3,93,66,6.29,15.57
+PORT FAIRY,02/10/2025,2.3,14.0, ,14.7,7.0,94,67,8.06,12.50
+PORT FAIRY,03/10/2025,2.5,5.6, ,17.5,8.4,95,73,6.25,17.80
+PORT FAIRY,04/10/2025,3.8,0.0, ,23.7,7.1,91,52,3.05,21.91
+PORT FAIRY,05/10/2025,3.4,0.0, ,20.7,14.0,93,41,5.80,7.89
+PORT FAIRY,06/10/2025,3.6,9.0, ,15.7,11.0,83,51,7.31,19.49
+PORT FAIRY,07/10/2025,2.4,0.2, ,15.5,9.1,88,60,4.22,12.13
+PORT FAIRY,08/10/2025,3.3,0.0, ,20.2,9.8,93,52,4.84,14.86
+PORT FAIRY,09/10/2025,3.7,4.6, ,17.9,9.1,90,49,6.78,18.98
+PORT FAIRY,10/10/2025,3.7,1.4, ,17.9,10.0,91,49,8.03,17.89
+PORT FAIRY,11/10/2025,2.5,5.2, ,16.6,10.6,94,67,5.74,14.55
+PORT FAIRY,12/10/2025,2.8,10.6, ,17.1,8.5,95,64,6.22,16.54
+PORT FAIRY,13/10/2025,2.7,4.2, ,16.0,5.2,84,53,3.08,14.89
+PORT FAIRY,14/10/2025,3.5,0.0, ,17.7,8.7,91,58,5.39,23.15
+Totals:,,42.8,64.6, ,,,,,, 
