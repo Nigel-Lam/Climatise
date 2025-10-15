@@ -69,11 +69,161 @@ const STATION_COORDS: Record<string, { lat: number; lon: number }> = {
 };
 
 export function VictoriaMap() {
-  const { earliest, latest } = useStationStore();
+  const { earliest, latest, selectedStations } = useStationStore();
   const [mapData, setMapData] = useState<MapDataPoint[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const vegaContainerRef = useRef<HTMLDivElement>(null);
+  const vegaViewRef = useRef<any>(null);
+  const [regionData, setRegionData] = useState<any[]>([]);
+
+  // Projection state so we can zoom/pan to a clicked station
+  const [projectionCenter, setProjectionCenter] = useState<[number, number]>([145.1938, -36.2004]);
+  const [projectionScale, setProjectionScale] = useState<number>(5500);
+
+  // Calculate distance between two lat/lon points (Haversine formula)
+  const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number): number => {
+    const R = 6371; // Earth's radius in km
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a = 
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  };
+
+  // Watch for station selection changes and zoom accordingly
+  useEffect(() => {
+    if (selectedStations.length === 1) {
+      // Exactly one station selected - zoom to it
+      const stationName = selectedStations[0];
+      const coords = STATION_COORDS[stationName];
+      if (coords) {
+        console.log('Zooming to selected station:', stationName, 'at', coords.lon, coords.lat);
+        setProjectionCenter([coords.lon, coords.lat]);
+        setProjectionScale(15000);
+      }
+    } else {
+      // Multiple stations or none - reset to full Victoria view
+      console.log('Resetting to full Victoria view');
+      setProjectionCenter([145.1938, -36.2004]);
+      setProjectionScale(5500);
+    }
+  }, [selectedStations]);
+
+  // Calculate regional temperature data when station data changes
+  useEffect(() => {
+    if (mapData.length === 0) {
+      setRegionData([]);
+      return;
+    }
+
+    // Fetch the GeoJSON to get actual region centroids
+    fetch('https://raw.githubusercontent.com/Nigel-Lam/Climatise/refs/heads/main/geojson/SA3_2021_AUST_GDA2020.json')
+      .then(res => res.json())
+      .then(topoData => {
+        // Parse TopoJSON and extract Victoria regions with their bounding boxes
+        const regions: any[] = [];
+        
+        if (topoData.objects && topoData.objects.SA3_2021_AUST_GDA2020) {
+          const geometries = topoData.objects.SA3_2021_AUST_GDA2020.geometries;
+          
+          // Log first few Victoria codes to debug
+          const vicGeoms = geometries.filter((g: any) => g.properties?.STE_NAME21 === 'Victoria');
+          console.log('Sample Victoria region codes:', vicGeoms.slice(0, 5).map((g: any) => ({
+            code: g.properties.SA3_CODE21,
+            name: g.properties.SA3_NAME21
+          })));
+          
+          geometries.forEach((geom: any) => {
+            if (geom.properties && geom.properties.STE_NAME21 === 'Victoria') {
+              const code = geom.properties.SA3_CODE21;
+              const name = geom.properties.SA3_NAME21;
+              
+              const regionTemp = calculateRegionTemperature(code, name);
+              
+              // Always add region even if temp is null - Vega will handle missing data
+              regions.push({
+                region_code: code,
+                region_name: name,
+                avg_temp: regionTemp !== null ? regionTemp : 15 // Use fallback temp of 15°C if calculation fails
+              });
+            }
+          });
+        }
+        
+        console.log('Region data sample:', regions.slice(0, 3));
+        setRegionData(regions);
+      })
+      .catch(err => {
+        console.error('Failed to fetch region data:', err);
+        setRegionData([]);
+      });
+  }, [mapData]);
+
+  // Calculate temperature for a region based on nearby stations
+  const calculateRegionTemperature = (code: string, _name: string): number | null => {
+    if (mapData.length === 0) return null;
+
+    // Map of region codes to approximate centroids (lat, lon)
+    const regionCentroids: Record<string, [number, number]> = {
+      // Melbourne metro
+      "20104": [-37.81, 144.96], "20601": [-37.82, 144.95], "20602": [-37.84, 144.98],
+      "20603": [-37.85, 145.00], "20604": [-37.81, 145.00], "20605": [-37.79, 145.03],
+      "20606": [-37.82, 145.05], "20607": [-37.83, 145.08], "20608": [-37.84, 145.12],
+      "20609": [-37.82, 145.15], "20610": [-37.85, 145.16], "20611": [-37.88, 145.12],
+      "20612": [-37.88, 145.20], "20613": [-37.81, 145.23], "20614": [-37.73, 145.35],
+      "20615": [-37.89, 145.30], "20616": [-37.75, 145.45], "20617": [-37.97, 145.23],
+      "20618": [-38.05, 145.28], "20619": [-38.13, 145.30], "20620": [-38.08, 145.40],
+      "20621": [-38.14, 145.12], "20622": [-38.25, 145.15], "20623": [-38.35, 144.96],
+      "20624": [-38.45, 145.05], "20625": [-37.90, 144.68], "20626": [-37.78, 144.85],
+      "20627": [-37.75, 144.95], "20628": [-37.68, 144.90], "20629": [-37.70, 144.88],
+      "20630": [-37.58, 144.72], "20631": [-37.68, 144.58], "20632": [-37.55, 144.45],
+      
+      // Regional Victoria
+      "20101": [-38.15, 144.36], "20102": [-38.31, 144.33], "20103": [-38.40, 144.10],
+      "20201": [-37.56, 143.85], "20202": [-37.42, 143.60], "20203": [-37.30, 143.20],
+      "20301": [-36.76, 144.28], "20302": [-36.45, 144.15], "20303": [-36.85, 144.70],
+      "20304": [-36.27, 143.35], "20401": [-36.38, 145.40], "20402": [-36.10, 145.30],
+      "20403": [-36.43, 145.65], "20501": [-37.10, 147.60], "20502": [-36.86, 147.28],
+      "20503": [-37.05, 147.13], "20504": [-36.10, 146.90], "20505": [-36.42, 146.31],
+      "20506": [-36.10, 146.51], "20701": [-38.18, 146.42], "20702": [-37.92, 146.03],
+      "20703": [-37.84, 146.27], "20704": [-37.90, 147.00], "20705": [-37.70, 148.00],
+      "20706": [-37.89, 147.57], "20801": [-38.38, 142.48], "20802": [-38.08, 142.81],
+      "20803": [-37.85, 142.35], "20804": [-38.32, 141.60], "20805": [-37.65, 142.06],
+      "20806": [-37.70, 141.85], "20901": [-36.67, 142.17], "20902": [-37.07, 142.74],
+      "20903": [-37.03, 141.30], "20904": [-36.32, 141.65], "21001": [-35.38, 143.53],
+      "21002": [-34.24, 142.09], "21003": [-35.18, 142.50]
+    };
+
+    const centroid = regionCentroids[code];
+    if (!centroid) {
+      // Fallback: use average of all stations
+      const avgTemp = mapData.reduce((sum, s) => sum + s.avg_temp, 0) / mapData.length;
+      return Math.round(avgTemp * 10) / 10;
+    }
+
+    // Find 3 nearest stations using inverse distance weighting
+    const stationsWithDist = mapData.map(station => ({
+      ...station,
+      distance: calculateDistance(centroid[0], centroid[1], station.lat, station.lon)
+    })).sort((a, b) => a.distance - b.distance).slice(0, 3);
+
+    if (stationsWithDist.length === 0) return null;
+
+    let weightedSum = 0;
+    let weightTotal = 0;
+
+    stationsWithDist.forEach(station => {
+      const weight = 1 / (station.distance + 0.1);
+      weightedSum += station.avg_temp * weight;
+      weightTotal += weight;
+    });
+
+    return weightTotal > 0 ? Math.round((weightedSum / weightTotal) * 10) / 10 : null;
+  };
 
   // Fetch data whenever dates change (same pattern as StationWeather.tsx)
   useEffect(() => {
@@ -159,31 +309,59 @@ export function VictoriaMap() {
   // Vega-Lite specification
   const vegaSpec = useMemo(() => ({
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 700,
-    "height": 500,
+    "width": "container",
+    "height": "container",
     "title": "Victorian Weather Stations - Average Temperature",
     
     "projection": {
       "type": "mercator",
-      "center": [145.1938, -36.2004],
-      "scale": 3750
+      "center": [projectionCenter[0], projectionCenter[1]],
+      "scale": projectionScale
+    },
+
+    "datasets": {
+      "regionWeather": [],
+      "stations": []
     },
 
     "layer": [
-      // Background map of Victoria
+      // Victoria regions with interpolated temperature
       {
         "data": {
           "url": "https://raw.githubusercontent.com/Nigel-Lam/Climatise/refs/heads/main/geojson/SA3_2021_AUST_GDA2020.json",
           "format": { "type": "topojson", "feature": "SA3_2021_AUST_GDA2020" }
         },
         "transform": [
-          { "filter": "datum.properties.STE_NAME21 === 'Victoria' " }
+          { "filter": "datum.properties.STE_NAME21 === 'Victoria' " },
+          {
+            "lookup": "properties.SA3_CODE21",
+            "from": {
+              "data": { "name": "regionWeather" },
+              "key": "region_code",
+              "fields": ["avg_temp", "region_name"]
+            }
+          }
         ],
         "mark": { 
-          "type": "geoshape", 
-          "fill": "#e8e8e8", 
+          "type": "geoshape",
           "stroke": "white",
           "strokeWidth": 0.5
+        },
+        "encoding": {
+          "fill": {
+            "field": "avg_temp",
+            "type": "quantitative",
+            "scale": {
+              "scheme": "redblue",
+              "reverse": true,
+              "domain": [5, 35]
+            },
+            "legend": null
+          },
+          "tooltip": [
+            { "field": "properties.SA3_NAME21", "type": "nominal", "title": "Region" },
+            { "field": "avg_temp", "type": "quantitative", "title": "Est. Avg Temp (°C)", "format": ".1f" }
+          ]
         }
       },
 
@@ -195,7 +373,8 @@ export function VictoriaMap() {
           "size": 150,
           "opacity": 0.85,
           "stroke": "white",
-          "strokeWidth": 1.5
+          "strokeWidth": 1.5,
+          "cursor": "pointer"
         },
         "encoding": {
           "longitude": { "field": "lon", "type": "quantitative" },
@@ -204,7 +383,7 @@ export function VictoriaMap() {
             "field": "avg_temp",
             "type": "quantitative",
             "scale": {
-              "scheme": "redyellowblue",
+              "scheme": "redblue",
               "reverse": true,
               "domain": [5, 35]
             },
@@ -221,32 +400,53 @@ export function VictoriaMap() {
         }
       }
     ]
-  }), []);
+  }), [projectionCenter, projectionScale]);
 
   // Embed the Vega-Lite visualization when data changes
   useEffect(() => {
-    if (vegaContainerRef.current && mapData.length > 0) {
-      // Create a spec with inline data
+    // Clean up any previous embedded view before re-embedding
+    if (vegaViewRef.current) {
+      try {
+        vegaViewRef.current.finalize();
+      } catch {}
+      vegaViewRef.current = null;
+    }
+
+    // Wait for both station data AND region data before embedding
+    if (vegaContainerRef.current && mapData.length > 0 && regionData.length > 0) {
+      console.log('Embedding with', regionData.length, 'regions. Sample:', regionData[0]);
+      
+      // Create a spec with datasets populated
       const specWithData = {
         ...vegaSpec,
-        layer: vegaSpec.layer.map((layer: any) => {
-          if (layer.data && layer.data.name === "stations") {
-            return {
-              ...layer,
-              data: { values: mapData }
-            };
-          }
-          return layer;
-        })
-      };
+        datasets: {
+          regionWeather: regionData,
+          stations: mapData
+        }
+      } as any;
+
+      console.log('Spec with datasets:', specWithData.datasets);
 
       vegaEmbed(vegaContainerRef.current, specWithData, { actions: false })
+        .then(res => {
+          vegaViewRef.current = res.view;
+          console.log('Vega successfully embedded with', regionData.length, 'regions and', mapData.length, 'stations');
+        })
         .catch(err => {
           console.error("Vega-Embed error:", err);
           setError(err.message);
         });
     }
-  }, [mapData, vegaSpec]);
+
+    return () => {
+      if (vegaViewRef.current) {
+        try {
+          vegaViewRef.current.finalize();
+        } catch {}
+        vegaViewRef.current = null;
+      }
+    };
+  }, [mapData, regionData, vegaSpec]);
 
   // Render states (same pattern as StationWeather.tsx)
   if (!earliest || !latest) {
@@ -277,6 +477,14 @@ export function VictoriaMap() {
     return (
       <div style={{ padding: 24, textAlign: "center", color: "#666" }}>
         No weather data available for the selected date range
+      </div>
+    );
+  }
+
+  if (mapData.length > 0 && regionData.length === 0) {
+    return (
+      <div style={{ padding: 24, textAlign: "center", color: "#666" }}>
+        Calculating regional temperatures...
       </div>
     );
   }
