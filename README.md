@@ -113,11 +113,13 @@ This command runs:
 #### Option 2: Run Servers Separately
 
 **Terminal 1 - Backend:**
+Run this in the root directory
 ```bash
 uvicorn backend.server:app --reload --host 127.0.0.1 --port 8000
 ```
 
 **Terminal 2 - Frontend:**
+Run this in frontend directory (as seen in cd frontend)
 ```bash
 cd frontend
 npm run dev
