@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
 
+
 class Observation(BaseModel):
     station_name: str = Field(..., alias='Station Name')
     date: str = Field(..., alias='Date')
