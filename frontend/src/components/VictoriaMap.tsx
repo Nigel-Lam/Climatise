@@ -143,19 +143,71 @@ export function VictoriaMap() {
                             const code = geom.properties.SA3_CODE21;
                             const name = geom.properties.SA3_NAME21;
 
-                            const regionTemp = calculateRegionTemperature(code, name);
+                            // Calculate centroid from TopoJSON arcs
+                            let centroid: [number, number] | null = null;
+                            
+                            if (geom.arcs && topoData.arcs && topoData.transform) {
+                                try {
+                                    // Decode TopoJSON arcs to get actual coordinates
+                                    const transform = topoData.transform;
+                                    const coords: [number, number][] = [];
+                                    
+                                    // Flatten all arcs for this geometry
+                                    const processArcs = (arcList: any) => {
+                                        if (Array.isArray(arcList)) {
+                                            arcList.forEach((item: any) => {
+                                                if (Array.isArray(item)) {
+                                                    processArcs(item);
+                                                } else if (typeof item === 'number') {
+                                                    const arcIndex = item < 0 ? ~item : item;
+                                                    const arc = topoData.arcs[arcIndex];
+                                                    if (arc) {
+                                                        let x = 0, y = 0;
+                                                        arc.forEach((point: number[]) => {
+                                                            x += point[0];
+                                                            y += point[1];
+                                                            const lon = x * transform.scale[0] + transform.translate[0];
+                                                            const lat = y * transform.scale[1] + transform.translate[1];
+                                                            coords.push([lat, lon]);
+                                                        });
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    };
+                                    
+                                    processArcs(geom.arcs);
+                                    
+                                    // Calculate centroid from all coordinates
+                                    if (coords.length > 0) {
+                                        const sumLat = coords.reduce((sum, c) => sum + c[0], 0);
+                                        const sumLon = coords.reduce((sum, c) => sum + c[1], 0);
+                                        centroid = [sumLat / coords.length, sumLon / coords.length];
+                                    }
+                                } catch (e) {
+                                    console.warn(`Failed to decode arcs for ${name}:`, e);
+                                }
+                            }
 
-                            // Always add region even if temp is null - Vega will handle missing data
-                            regions.push({
-                                region_code: code,
-                                region_name: name,
-                                avg_temp: regionTemp !== null ? regionTemp : 15 // Use fallback temp of 15°C if calculation fails
-                            });
+                            const regionTemp = centroid 
+                                ? calculateRegionTemperature(centroid)
+                                : null;
+
+                            // Only add region if we calculated a valid temperature
+                            if (regionTemp !== null) {
+                                regions.push({
+                                    region_code: code,
+                                    region_name: name,
+                                    avg_temp: regionTemp
+                                });
+                            } else {
+                                console.warn(`No temperature calculated for region ${code} (${name})`);
+                            }
                         }
                     });
                 }
 
-                console.log('Region data sample:', regions.slice(0, 3));
+                console.log('Calculated temps for', regions.length, 'Victoria regions. Sample:', regions.slice(0, 3));
                 setRegionData(regions);
             })
             .catch(err => {
@@ -164,61 +216,25 @@ export function VictoriaMap() {
             });
     }, [mapData]);
 
-    // Calculate temperature for a region based on nearby stations
-    const calculateRegionTemperature = (code: string, _name: string): number | null => {
+    // Calculate temperature for a region based on nearby stations using IDW
+    const calculateRegionTemperature = (centroid: [number, number]): number | null => {
         if (mapData.length === 0) return null;
 
-        // Map of region codes to approximate centroids (lat, lon)
-        const regionCentroids: Record<string, [number, number]> = {
-            // Melbourne metro
-            "20104": [-37.81, 144.96], "20601": [-37.82, 144.95], "20602": [-37.84, 144.98],
-            "20603": [-37.85, 145.00], "20604": [-37.81, 145.00], "20605": [-37.79, 145.03],
-            "20606": [-37.82, 145.05], "20607": [-37.83, 145.08], "20608": [-37.84, 145.12],
-            "20609": [-37.82, 145.15], "20610": [-37.85, 145.16], "20611": [-37.88, 145.12],
-            "20612": [-37.88, 145.20], "20613": [-37.81, 145.23], "20614": [-37.73, 145.35],
-            "20615": [-37.89, 145.30], "20616": [-37.75, 145.45], "20617": [-37.97, 145.23],
-            "20618": [-38.05, 145.28], "20619": [-38.13, 145.30], "20620": [-38.08, 145.40],
-            "20621": [-38.14, 145.12], "20622": [-38.25, 145.15], "20623": [-38.35, 144.96],
-            "20624": [-38.45, 145.05], "20625": [-37.90, 144.68], "20626": [-37.78, 144.85],
-            "20627": [-37.75, 144.95], "20628": [-37.68, 144.90], "20629": [-37.70, 144.88],
-            "20630": [-37.58, 144.72], "20631": [-37.68, 144.58], "20632": [-37.55, 144.45],
-
-            // Regional Victoria
-            "20101": [-38.15, 144.36], "20102": [-38.31, 144.33], "20103": [-38.40, 144.10],
-            "20201": [-37.56, 143.85], "20202": [-37.42, 143.60], "20203": [-37.30, 143.20],
-            "20301": [-36.76, 144.28], "20302": [-36.45, 144.15], "20303": [-36.85, 144.70],
-            "20304": [-36.27, 143.35], "20401": [-36.38, 145.40], "20402": [-36.10, 145.30],
-            "20403": [-36.43, 145.65], "20501": [-37.10, 147.60], "20502": [-36.86, 147.28],
-            "20503": [-37.05, 147.13], "20504": [-36.10, 146.90], "20505": [-36.42, 146.31],
-            "20506": [-36.10, 146.51], "20701": [-38.18, 146.42], "20702": [-37.92, 146.03],
-            "20703": [-37.84, 146.27], "20704": [-37.90, 147.00], "20705": [-37.70, 148.00],
-            "20706": [-37.89, 147.57], "20801": [-38.38, 142.48], "20802": [-38.08, 142.81],
-            "20803": [-37.85, 142.35], "20804": [-38.32, 141.60], "20805": [-37.65, 142.06],
-            "20806": [-37.70, 141.85], "20901": [-36.67, 142.17], "20902": [-37.07, 142.74],
-            "20903": [-37.03, 141.30], "20904": [-36.32, 141.65], "21001": [-35.38, 143.53],
-            "21002": [-34.24, 142.09], "21003": [-35.18, 142.50]
-        };
-
-        const centroid = regionCentroids[code];
-        if (!centroid) {
-            // Fallback: use average of all stations
-            const avgTemp = mapData.reduce((sum, s) => sum + s.avg_temp, 0) / mapData.length;
-            return Math.round(avgTemp * 10) / 10;
-        }
-
-        // Find 3 nearest stations using inverse distance weighting
+        // Find 5 nearest stations using inverse distance weighting (increased from 3 for better coverage)
         const stationsWithDist = mapData.map(station => ({
             ...station,
             distance: calculateDistance(centroid[0], centroid[1], station.lat, station.lon)
-        })).sort((a, b) => a.distance - b.distance).slice(0, 3);
+        })).sort((a, b) => a.distance - b.distance).slice(0, 5);
 
         if (stationsWithDist.length === 0) return null;
 
+        // Use inverse distance squared for weighting - gives more emphasis to closer stations
         let weightedSum = 0;
         let weightTotal = 0;
 
         stationsWithDist.forEach(station => {
-            const weight = 1 / (station.distance + 0.1);
+            // Square the distance for more localized interpolation
+            const weight = 1 / Math.pow(station.distance + 0.1, 2);
             weightedSum += station.avg_temp * weight;
             weightTotal += weight;
         });
