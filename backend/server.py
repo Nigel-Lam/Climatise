@@ -3,7 +3,6 @@ import sqlite3
 from datetime import datetime
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
-from pathlib import Path
 from scripts.data_collection import download_new_csvs, save_last_download_time
 import os
 from scripts.preprocess import preprocess_all_stations
