@@ -308,7 +308,7 @@ export function VictoriaMap() {
 
   // Vega-Lite specification
   const vegaSpec = useMemo(() => ({
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json",
     "width": "container",
     "height": "container",
     "title": "Victorian Weather Stations - Average Temperature",

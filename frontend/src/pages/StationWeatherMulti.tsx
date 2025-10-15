@@ -381,7 +381,7 @@ export default function MultiStationWeatherCards() {
   const entries = Object.entries(combinedSeries);
 
   return (
-    <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", gap: 16 }}>
+    <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", gap: 8 }}>
       <h2 style={{ margin: "0 0 4px" }}>
         {stationsToRender.length <= 3
           ? `Weather Summary — Multiple Stations (${stationsToRender.length})`
@@ -395,9 +395,9 @@ export default function MultiStationWeatherCards() {
         {anyLoading && <span>Loading data… </span>}
         {!anyLoading && (
           <>
-            <span>Contributing stations: {contributing}/{stationsToRender.length}</span>
+            <p>Contributing stations: {contributing}/{stationsToRender.length}</p>
             {errorCount > 0 && (
-              <span style={{ color: "crimson" }}> — {errorCount} fetch error{errorCount > 1 ? "s" : ""}</span>
+              <p style={{ color: "crimson" }}> — {errorCount} fetch error{errorCount > 1 ? "s" : ""}</p>
             )}
           </>
         )}
@@ -413,7 +413,7 @@ export default function MultiStationWeatherCards() {
               style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(3, minmax(220px, 1fr))",
-                gap: 16,
+                gap: 8,
               }}
             >
               {metricKeys.map((metric) => (
@@ -431,14 +431,14 @@ export default function MultiStationWeatherCards() {
       ) : (
         <>
           {entries.length === 0 && !anyLoading && (
-            <div style={{ padding: 12, color: "#555" }}>No combined data available.</div>
+            <div style={{ padding: 6, color: "#555" }}>No combined data available.</div>
           )}
           {entries.length > 0 && (
             <div
               style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(3, minmax(220px, 1fr))",
-                gap: 16,
+                gap: 8,
               }}
             >
               {entries.map(([name, values], i) => (
