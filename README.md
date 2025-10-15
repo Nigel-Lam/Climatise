@@ -138,33 +138,43 @@ npm run dev
 ```
 Climatise/
 ├── backend/
-│   └── server.py              # FastAPI server with weather endpoints
+│   └── server.py                        # FastAPI server with weather endpoints
+├── data/
+│   ├── schema.py                        # Pydantic data models
+│   ├── victoria.db                      # SQLite weather database
+│   ├── victoria.json                    # Raw weather data snapshot
+│   ├── last_download.json               # Metadata for last data fetch
+│   └── vic/                             # Weather station folders (many subfolders)
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── VictoriaMap.tsx     # Interactive Victorian weather map
-│   │   │   ├── DateRangePicker.tsx # Date selection component
-│   │   │   ├── WeatherStationFilter.tsx # Station selection
-│   │   │   └── NavBar.tsx          # Navigation component
+│   │   │   ├── DateRangePicker.tsx
+│   │   │   ├── NavBar.tsx
+│   │   │   ├── VictoriaMap.tsx
+│   │   │   ├── WeatherStationFilter.tsx
+│   │   │   └── WeatherStationFilterBoxes.tsx
 │   │   ├── pages/
-│   │   │   ├── HomePage.tsx        # Main dashboard
-│   │   │   └── StationWeather.tsx  # Weather analytics cards
-│   │   ├── store.ts                # Zustand state management
-│   │   └── RouteMap.tsx            # React Router configuration
-│   └── package.json
-├── data/
-│   ├── victoria.db              # SQLite weather database
-│   ├── victoria.json            # Raw weather data
-│   └── schema.py                # Pydantic data models
+│   │   │   ├── HomePage.tsx
+│   │   │   ├── StationWeather.tsx
+│   │   │   └── StationWeatherMulti.tsx
+│   │   ├── RouteMap.tsx
+│   │   ├── store.ts
+│   │   └── main.tsx
 ├── geojson/
-│   ├── SA3_2021_AUST_GDA2020.json # Victorian map boundaries
-│   └── vic_map.json              # Additional map data
+│   ├── SA3_2021_AUST_GDA2020.json       # Victorian map boundaries
+│   └── vic_map.json                     # Additional map data
 ├── scripts/
-│   ├── setup.py                 # Database setup script
-│   ├── data_collection.py        # Data collection utilities
-│   └── preprocess.py            # Data preprocessing
-├── pyproject.toml               # Python dependencies
-└── package.json                 # Root package configuration
+│   ├── data_collection.py               # Data collection utilities
+│   ├── geopandas_loc_to_longlat.py      # Geopandas helper script
+│   ├── new_data.py                      # New data ingestion
+│   ├── preprocess.py                    # Data preprocessing
+│   └── setup.py                         # Database setup script
+├── db.json                              # Sample/mock DB (if used)
+├── package.json                         # Root scripts (e.g., dev runner)
+├── package-lock.json
+├── pyproject.toml                       # Python dependencies
+├── uv.lock                              # uv lockfile
+└── README.md
 ```
 
 ## 🔧 API Endpoints
